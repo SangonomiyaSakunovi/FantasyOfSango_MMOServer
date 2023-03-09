@@ -1,5 +1,6 @@
 ﻿using Common.ArtifactCode;
 using Common.ComBatCode;
+using Common.ElementCode;
 using Common.StateCode;
 using Common.WeaponCode;
 using PlayerData;
@@ -38,10 +39,10 @@ namespace PlayerScript
                         Account = account,
                         Password = password
                     };
-                    var attributeInfoNew1 = PlayerAttributeAdd.PackAttibuteInfo(100, 100, 100, 100);
-                    var attributeInfoNew2 = PlayerAttributeAdd.PackAttibuteInfo(90, 100, 50, 100);
-                    var attributeInfoNew3 = PlayerAttributeAdd.PackAttibuteInfo(80, 100, 40, 100);
-                    var attributeInfoNew4 = PlayerAttributeAdd.PackAttibuteInfo(70, 100, 30, 100);
+                    var attributeInfoNew1 = PlayerAttributeAdd.PackAttibuteInfo(100, 100, 100, 100, 2, 0, ElementTypeCode.Hydro, 2);
+                    var attributeInfoNew2 = PlayerAttributeAdd.PackAttibuteInfo(90, 100, 50, 100, 2, 0, ElementTypeCode.Pyro, 2);
+                    var attributeInfoNew3 = PlayerAttributeAdd.PackAttibuteInfo(80, 100, 40, 100, 2, 0, ElementTypeCode.Cryo, 2);
+                    var attributeInfoNew4 = PlayerAttributeAdd.PackAttibuteInfo(70, 100, 30, 100, 2, 0, ElementTypeCode.Electro, 2);
                     var weaponInfoNew1 = WeaponAdd.PackWeaponInfo(WeaponNameCode.Default, WeaponTypeCode.Default,
                         RarityCode.Default, SkillCode.Default, 2, 0, 0);
                     var weaponInfoNew2 = WeaponAdd.PackWeaponInfo(WeaponNameCode.Default, WeaponTypeCode.Default,
@@ -58,9 +59,9 @@ namespace PlayerScript
                     {
                         Nickname = nickname,
                         UserInfo = userInfoNew,
-                        AttributeInfoList = new List<AttributeInfo>{attributeInfoNew1,attributeInfoNew2,attributeInfoNew3,attributeInfoNew4},
-                        WeaponInfoList = new List<WeaponInfo> { weaponInfoNew1, weaponInfoNew2, weaponInfoNew3, weaponInfoNew4},
-                        ArtifactInfoList = new List<ArtifactInfo> { artifactInfoNew1, artifactInfoNew2, artifactInfoNew3, artifactInfoNew4},                        
+                        AttributeInfoList = new List<AttributeInfo> { attributeInfoNew1, attributeInfoNew2, attributeInfoNew3, attributeInfoNew4 },
+                        WeaponInfoList = new List<WeaponInfo> { weaponInfoNew1, weaponInfoNew2, weaponInfoNew3, weaponInfoNew4 },
+                        ArtifactInfoList = new List<ArtifactInfo> { artifactInfoNew1, artifactInfoNew2, artifactInfoNew3, artifactInfoNew4 },
                     };
                     context.Players.Add(PlayerNew);
                     return changeLineNum = context.SaveChanges();

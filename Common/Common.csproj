@@ -17,7 +17,7 @@
     <DebugSymbols>false</DebugSymbols>
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\..\Client\TestClient\FantasyOfSango\Assets\Plugins\</OutputPath>
+    <OutputPath>..\..\..\..\..\Client\TestClient\FantasyOfSango\FantasyOfSango_Client\Assets\Plugins\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

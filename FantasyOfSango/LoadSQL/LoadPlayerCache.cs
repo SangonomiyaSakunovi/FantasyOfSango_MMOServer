@@ -20,6 +20,10 @@ namespace FantasyOfSango.LoadSQL
                     HPFull = item.HPFull,
                     MP = item.MP,
                     MPFull = item.MP,
+                    Attack = item.Attack,
+                    Defence = item.Defence,
+                    ElementType = item.ElementType,
+                    ElementGauge = item.ElementGauge,
                 };
                 tempAttributeInfoList.Add(temp);
             }

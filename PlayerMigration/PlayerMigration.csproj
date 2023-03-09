@@ -285,6 +285,10 @@
     <Compile Include="Migrations\20230308142001_20230308.designer.cs">
       <DependentUpon>20230308142001_20230308.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20230309105242_20230309.cs" />
+    <Compile Include="Migrations\20230309105242_20230309.designer.cs">
+      <DependentUpon>20230309105242_20230309.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\PlayerContextModelSnapshot.cs" />
     <Compile Include="PlayerContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
