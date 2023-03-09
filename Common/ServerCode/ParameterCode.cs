@@ -15,6 +15,7 @@ namespace Common.ServerCode
         PlayerTransformCacheList,
         AttackCommand,
         AttackDamage,
-        AttackResult
+        AttackResult,
+        ChooseAvater
     }
 }

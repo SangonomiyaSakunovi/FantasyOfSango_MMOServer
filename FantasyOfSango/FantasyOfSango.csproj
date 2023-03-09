@@ -94,6 +94,7 @@
     <Compile Include="Cache\OnlineAttackCache.cs" />
     <Compile Include="Handler\AttackCommandHandler.cs" />
     <Compile Include="Handler\AttackDamageHandler.cs" />
+    <Compile Include="Handler\ChooseAvaterHandler.cs" />
     <Compile Include="Handler\SyncPlayerAccountHandler.cs" />
     <Compile Include="Handler\SyncPlayerDataHandler.cs" />
     <Compile Include="ClientPeer.cs" />

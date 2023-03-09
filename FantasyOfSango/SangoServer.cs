@@ -97,6 +97,8 @@ namespace FantasyOfSango
             HandlerDict.Add(attackCommandHandler.OpCode, attackCommandHandler);
             AttackDamageHandler attackDamageHandler = new AttackDamageHandler();
             HandlerDict.Add(attackDamageHandler.OpCode, attackDamageHandler);
+            ChooseAvaterHandler chooseAvaterHandler = new ChooseAvaterHandler();
+            HandlerDict.Add(chooseAvaterHandler.OpCode, chooseAvaterHandler);
         }
 
         private void InitCache()

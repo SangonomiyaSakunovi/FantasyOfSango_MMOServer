@@ -13,6 +13,7 @@ namespace Common.ServerCode
         SyncPlayerTransform,
         SyncPlayerAccount,
         AttackCommand,
-        AttackDamage
+        AttackDamage,
+        ChooseAvater,
     }
 }

@@ -9,6 +9,7 @@ namespace Common.ServerCode
         NewAccountJoin,
         SyncPlayerTransform,
         AttackCommand,
-        AttackResult
+        AttackResult,
+        ChooseAvater
     }
 }
