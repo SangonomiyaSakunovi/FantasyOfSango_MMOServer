@@ -1,8 +1,8 @@
 ﻿using Common.DataCache.PlayerDataCache;
 using Common.DataCache.PositionCache;
+using Common.GameObjectCode;
 using Common.Tools;
 using FantasyOfSango.Base;
-using Photon.SocketServer;
 using System.Collections.Generic;
 
 //Developer : SangonomiyaSakunovi
@@ -16,6 +16,9 @@ namespace FantasyOfSango.Cache
 
         private Dictionary<string, ClientPeer> OnlineAccountDict = new Dictionary<string, ClientPeer>();
         private Dictionary<string, PlayerCache> OnlinePlayerCacheDict = new Dictionary<string, PlayerCache>();
+        private Dictionary<string, int> OnlinePlayerAvaterIndexDict = new Dictionary<string, int>();
+        private Dictionary<string, AvaterCode> OnlineAvaterDict = new Dictionary<string, AvaterCode>();
+
         public Dictionary<ClientPeer, TransformCache> OnlinePlayerTransformDict = new Dictionary<ClientPeer, TransformCache>();
 
         public override void InitCache()
@@ -56,6 +59,7 @@ namespace FantasyOfSango.Cache
                 OnlineAccountDict.Remove(clientPeer.Account);
                 OnlinePlayerCacheDict.Remove(clientPeer.Account);
                 OnlinePlayerTransformDict.Remove(clientPeer);
+                OnlineAvaterDict.Remove(clientPeer.Account);
             }
         }
 
@@ -152,6 +156,38 @@ namespace FantasyOfSango.Cache
                 {
                     OnlinePlayerCacheDict.Add(damagerAccount, damagerPlayerCache);
                 }
+            }
+        }
+
+        public void SetOnlineAvaterIndex(string account, AvaterCode avater)
+        {
+            lock (account)
+            {
+                int index = 0;
+                List<AttributeInfoCache> tempAttributeInfoList = GetOnlinePlayerCache(account).AttributeInfoList;
+                for (int i = 0; i < tempAttributeInfoList.Count; i++)
+                {
+                    if (tempAttributeInfoList[i].Avater == avater)
+                    {
+                        index = i; break;
+                    }
+                }
+                if (OnlinePlayerAvaterIndexDict.ContainsKey(account))
+                {
+                    OnlinePlayerAvaterIndexDict[account] = index;
+                }
+                else
+                {
+                    OnlinePlayerAvaterIndexDict.Add(account, index);
+                }
+            }
+        }
+
+        public int GetOnlineAvaterIndex(string account)
+        {
+            lock (account)
+            {
+                return DictTools.GetDictValue<string,int>(OnlinePlayerAvaterIndexDict, account);
             }
         }
     }

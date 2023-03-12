@@ -16,6 +16,7 @@ namespace FantasyOfSango.LoadSQL
             {
                 AttributeInfoCache temp = new AttributeInfoCache
                 {
+                    Avater = item.Avater,
                     HP = item.HP,
                     HPFull = item.HPFull,
                     MP = item.MP,

@@ -4,6 +4,7 @@
     {
         SangonomiyaKokomi,
         Yoimiya,
-        Ganyu
+        Ganyu,
+        Aether
     }
 }

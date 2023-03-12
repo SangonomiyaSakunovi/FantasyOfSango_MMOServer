@@ -1,6 +1,7 @@
 ﻿using Common.ComBatCode;
 using Common.DataCache.AttackCache;
 using Common.DataCache.PlayerDataCache;
+using Common.GameObjectCode;
 using FantasyOfSango.Base;
 using FantasyOfSango.Cache;
 
@@ -25,6 +26,14 @@ namespace FantasyOfSango.System
             {
                 attackResultCache = SetAttackDamage(attackDamageCache);
             }
+            else if (attackDamageCache.SkillCode == SkillCode.ElementAttack)
+            {
+                attackResultCache = SetElementAttackDamage(attackDamageCache);
+            }
+            else if (attackDamageCache.SkillCode == SkillCode.ElementBurst)
+            {
+                attackResultCache = SetElementBurstDamage(attackDamageCache);
+            }
             else
             {
                 attackResultCache = null;
@@ -36,9 +45,12 @@ namespace FantasyOfSango.System
         {
             PlayerCache attackerPlayerCache = OnlineAccountCache.Instance.GetOnlinePlayerCache(attackDamageCache.AttackerAccount);
             PlayerCache damagerPlayerCache = OnlineAccountCache.Instance.GetOnlinePlayerCache(attackDamageCache.DamagerAccount);
-            int attackerAttack = attackerPlayerCache.WeaponInfoList[0].PhysicAttack;
-            int attackDamage = attackerAttack;
-            damagerPlayerCache.AttributeInfoList[0].HP -= attackDamage;
+            int attackerIndex = OnlineAccountCache.Instance.GetOnlineAvaterIndex(attackDamageCache.AttackerAccount);
+            int damagerIndex = OnlineAccountCache.Instance.GetOnlineAvaterIndex(attackDamageCache.DamagerAccount);
+            int attackerAttack = attackerPlayerCache.AttributeInfoList[attackerIndex].Attack;
+            int damagerDefence = damagerPlayerCache.AttributeInfoList[damagerIndex].Defence;
+            int attackDamage = attackerAttack - damagerDefence;
+            damagerPlayerCache.AttributeInfoList[damagerIndex].HP -= attackDamage;
             AttackResultCache attackResultCache = new AttackResultCache
             {
                 AttackerAccount = attackDamageCache.AttackerAccount,
@@ -51,5 +63,35 @@ namespace FantasyOfSango.System
             return attackResultCache;
         }
 
+        private AttackResultCache SetElementAttackDamage(AttackDamageCache attackDamageCache)
+        {
+            PlayerCache attackerPlayerCache = OnlineAccountCache.Instance.GetOnlinePlayerCache(attackDamageCache.AttackerAccount);
+            PlayerCache damagerPlayerCache = OnlineAccountCache.Instance.GetOnlinePlayerCache(attackDamageCache.DamagerAccount);
+            int attackerIndex = OnlineAccountCache.Instance.GetOnlineAvaterIndex(attackDamageCache.AttackerAccount);
+            int damagerIndex = OnlineAccountCache.Instance.GetOnlineAvaterIndex(attackDamageCache.DamagerAccount);
+            //Exam if that damageRequest from Kokomi, she can give a healer
+            if (attackerPlayerCache.AttributeInfoList[attackerIndex].Avater == AvaterCode.SangonomiyaKokomi)
+            {
+                int kokomiHealer = attackerPlayerCache.AttributeInfoList[attackerIndex].Attack * 2;
+                damagerPlayerCache.AttributeInfoList[damagerIndex].HP += kokomiHealer;
+                AttackResultCache attackResultCache = new AttackResultCache
+                {
+                    AttackerAccount = attackDamageCache.AttackerAccount,
+                    DamagerAccount = attackDamageCache.DamagerAccount,
+                    DamageNumber = -kokomiHealer,
+                    AttackerPlayerCache = attackerPlayerCache,
+                    DamagerPlayerCache = damagerPlayerCache
+                };
+                OnlineAccountCache.Instance.UpdateOnlinePlayerCache(attackDamageCache.AttackerAccount, attackerPlayerCache, attackDamageCache.DamagerAccount, damagerPlayerCache);
+                return attackResultCache;
+            }
+            return null;
+        }
+
+        private AttackResultCache SetElementBurstDamage(AttackDamageCache attackDamageCache)
+        {
+
+            return null;
+        }
     }
 }

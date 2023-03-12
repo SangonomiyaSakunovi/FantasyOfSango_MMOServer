@@ -1,4 +1,5 @@
-﻿using Common.ServerCode;
+﻿using Common.GameObjectCode;
+using Common.ServerCode;
 using Common.Tools;
 using FantasyOfSango.Base;
 using FantasyOfSango.Cache;
@@ -46,6 +47,6 @@ namespace FantasyOfSango
         public void SetAccount(string account)
         {
             Account = account;
-        }
+        }        
     }
 }

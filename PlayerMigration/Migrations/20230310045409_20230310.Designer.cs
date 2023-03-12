@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using PlayerMigration;
 using Common.ArtifactCode;
-using Common.GameObjectCode;
 using Common.ElementCode;
 using Common.StateCode;
 using Common.ComBatCode;
@@ -14,9 +13,10 @@ using Common.WeaponCode;
 namespace PlayerMigration.Migrations
 {
     [DbContext(typeof(PlayerContext))]
-    partial class PlayerContextModelSnapshot : ModelSnapshot
+    [Migration("20230310045409_20230310")]
+    partial class _20230310
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.6")
@@ -47,16 +47,14 @@ namespace PlayerMigration.Migrations
 
                     b.Property<int>("Attack");
 
-                    b.Property<int>("Avater")
-                        .HasMaxLength(64);
-
                     b.Property<int>("Defence");
 
                     b.Property<int>("ElementGauge");
 
                     b.Property<int>("ElementType");
 
-                    b.Property<int>("HP");
+                    b.Property<int>("HP")
+                        .HasMaxLength(64);
 
                     b.Property<int>("HPFull");
 

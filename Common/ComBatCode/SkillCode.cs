@@ -10,5 +10,7 @@ namespace Common.ComBatCode
         ShieldSword,
         MagicJudge,
         Attack,
+        ElementAttack,
+        ElementBurst
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Common.DataCache.PlayerDataCache;
+using Common.GameObjectCode;
 using Common.ServerCode;
 using Common.Tools;
 using FantasyOfSango.Base;
@@ -37,6 +38,7 @@ namespace FantasyOfSango.Handler
                         PlayerCache playerCache = LoadPlayerCache.LoadPlayer(account, playerData);
                         SangoServer.Instance.clientPeer.SetAccount(account);
                         OnlineAccountCache.Instance.AddOnlineAccount(SangoServer.Instance.clientPeer, account, playerCache);
+                        OnlineAccountCache.Instance.SetOnlineAvaterIndex(account, AvaterCode.SangonomiyaKokomi);
                     }
                 }
                 else

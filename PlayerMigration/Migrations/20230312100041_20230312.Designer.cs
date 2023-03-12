@@ -14,9 +14,10 @@ using Common.WeaponCode;
 namespace PlayerMigration.Migrations
 {
     [DbContext(typeof(PlayerContext))]
-    partial class PlayerContextModelSnapshot : ModelSnapshot
+    [Migration("20230312100041_20230312")]
+    partial class _20230312
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.6")

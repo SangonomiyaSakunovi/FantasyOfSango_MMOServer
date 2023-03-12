@@ -1,4 +1,5 @@
 ﻿using Common.ElementCode;
+using Common.GameObjectCode;
 using System.ComponentModel.DataAnnotations;
 
 namespace PlayerData
@@ -8,6 +9,7 @@ namespace PlayerData
         //Value
         public int Id { get; set; }
         [Required, MaxLength(64)]
+        public AvaterCode Avater {  get; set; }
         public int HP { get; set; }
         public int HPFull { get; set; }
         public int MP { get; set; }
