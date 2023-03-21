@@ -1,4 +1,4 @@
-﻿using Common.WeaponCode;
+﻿using SangoCommon.WeaponCode;
 using PlayerData;
 using PlayerScript;
 using System;

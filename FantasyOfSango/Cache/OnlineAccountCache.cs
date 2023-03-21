@@ -1,7 +1,7 @@
-﻿using Common.DataCache.PlayerDataCache;
-using Common.DataCache.PositionCache;
-using Common.GameObjectCode;
-using Common.Tools;
+﻿using SangoCommon.DataCache.PlayerDataCache;
+using SangoCommon.DataCache.PositionCache;
+using SangoCommon.GameObjectCode;
+using SangoCommon.Tools;
 using FantasyOfSango.Base;
 using System.Collections.Generic;
 

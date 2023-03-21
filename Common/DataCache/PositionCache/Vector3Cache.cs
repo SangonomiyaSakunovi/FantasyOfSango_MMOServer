@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.DataCache.PositionCache
+namespace SangoCommon.DataCache.PositionCache
 {
     [Serializable]
     public class Vector3Cache

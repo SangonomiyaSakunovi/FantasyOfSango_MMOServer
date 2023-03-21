@@ -1,7 +1,7 @@
 ﻿//Developer : SangonomiyaSakunovi
 //Discription:
 
-namespace Common.ServerCode
+namespace SangoCommon.ServerCode
 {
     //The EventCode should define here
     public enum EventCode : byte

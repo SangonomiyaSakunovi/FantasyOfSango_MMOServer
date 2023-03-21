@@ -1,11 +1,11 @@
-﻿using Common.ArtifactCode;
+﻿using SangoCommon.ArtifactCode;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.DataCache.PlayerDataCache
+namespace SangoCommon.DataCache.PlayerDataCache
 {
     public class ArtifactInfoCache
     {

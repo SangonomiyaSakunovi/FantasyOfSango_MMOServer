@@ -1,5 +1,5 @@
-﻿using Common.ElementCode;
-using Common.GameObjectCode;
+﻿using SangoCommon.ElementCode;
+using SangoCommon.GameObjectCode;
 using PlayerData;
 
 namespace PlayerScript

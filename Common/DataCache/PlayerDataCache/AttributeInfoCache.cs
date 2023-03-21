@@ -1,8 +1,8 @@
-﻿using Common.ElementCode;
-using Common.GameObjectCode;
+﻿using SangoCommon.ElementCode;
+using SangoCommon.GameObjectCode;
 using System;
 
-namespace Common.DataCache.PlayerDataCache
+namespace SangoCommon.DataCache.PlayerDataCache
 {
     [Serializable]
     public class AttributeInfoCache

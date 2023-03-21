@@ -1,5 +1,5 @@
 ﻿
-namespace Common.Constant
+namespace SangoCommon.Constant
 {
     public class TimeConstant
     {

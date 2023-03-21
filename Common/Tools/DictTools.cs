@@ -3,7 +3,7 @@
 //Developer : SangonomiyaSakunovi
 //Discription:
 
-namespace Common.Tools
+namespace SangoCommon.Tools
 {
     public class DictTools
     {

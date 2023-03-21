@@ -1,7 +1,7 @@
 ﻿//Developer : SangonomiyaSakunovi
 //Discription:
 
-namespace Common.LocationCode
+namespace SangoCommon.LocationCode
 {
     public enum DomainCode
     {

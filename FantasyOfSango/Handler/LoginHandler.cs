@@ -1,7 +1,7 @@
-﻿using Common.DataCache.PlayerDataCache;
-using Common.GameObjectCode;
-using Common.ServerCode;
-using Common.Tools;
+﻿using SangoCommon.DataCache.PlayerDataCache;
+using SangoCommon.GameObjectCode;
+using SangoCommon.ServerCode;
+using SangoCommon.Tools;
 using FantasyOfSango.Base;
 using FantasyOfSango.Cache;
 using FantasyOfSango.LoadSQL;

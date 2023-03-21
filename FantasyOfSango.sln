@@ -17,9 +17,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerScript", "PlayerScrip
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{1A4F0D6D-BC95-48E8-A480-888CB8E3FE85}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{06A96A4C-007A-4576-A630-70609682BA92}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SangoCommon", "SangoCommon", "{06A96A4C-007A-4576-A630-70609682BA92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{87C85A47-F0C0-42FB-8953-E8BEF004299C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SangoCommon", "Common\SangoCommon.csproj", "{87C85A47-F0C0-42FB-8953-E8BEF004299C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

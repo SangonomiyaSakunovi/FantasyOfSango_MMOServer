@@ -1,4 +1,4 @@
-﻿using Common.DataCache.AttackCache;
+﻿using SangoCommon.DataCache.AttackCache;
 using FantasyOfSango.Base;
 using System.Collections.Generic;
 

@@ -1,6 +1,6 @@
-﻿using Common.Constant;
-using Common.DataCache.PositionCache;
-using Common.ServerCode;
+﻿using SangoCommon.Constant;
+using SangoCommon.DataCache.PositionCache;
+using SangoCommon.ServerCode;
 using FantasyOfSango.Base;
 using FantasyOfSango.Cache;
 using Photon.SocketServer;

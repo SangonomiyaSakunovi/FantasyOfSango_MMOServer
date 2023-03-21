@@ -1,5 +1,5 @@
-﻿using Common.DataCache.PlayerDataCache;
-using Common.ServerCode;
+﻿using SangoCommon.DataCache.PlayerDataCache;
+using SangoCommon.ServerCode;
 using FantasyOfSango.Base;
 using FantasyOfSango.Cache;
 using Photon.SocketServer;

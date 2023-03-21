@@ -1,7 +1,7 @@
 ﻿//Developer : SangonomiyaSakunovi
 //Discription:
 
-namespace Common.MaterialCode
+namespace SangoCommon.MaterialCode
 {
     public enum WeaponMaterialCode
     {

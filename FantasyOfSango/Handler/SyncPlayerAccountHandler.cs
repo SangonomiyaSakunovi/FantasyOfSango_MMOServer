@@ -1,4 +1,4 @@
-﻿using Common.ServerCode;
+﻿using SangoCommon.ServerCode;
 using FantasyOfSango.Base;
 using FantasyOfSango.Cache;
 using Photon.SocketServer;

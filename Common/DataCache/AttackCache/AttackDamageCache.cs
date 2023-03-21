@@ -1,8 +1,8 @@
-﻿using Common.ComBatCode;
-using Common.DataCache.PositionCache;
+﻿using SangoCommon.ComBatCode;
+using SangoCommon.DataCache.PositionCache;
 using System;
 
-namespace Common.DataCache.AttackCache
+namespace SangoCommon.DataCache.AttackCache
 {
     public class AttackDamageCache
     {

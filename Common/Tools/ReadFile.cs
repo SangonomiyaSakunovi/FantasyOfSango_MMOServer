@@ -5,7 +5,7 @@ using System.IO;
 //Developer : SangonomiyaSakunovi
 //Discription:
 
-namespace Common.Tools
+namespace SangoCommon.Tools
 {
     public class ReadFile
     {

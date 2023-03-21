@@ -1,7 +1,7 @@
 ﻿//Developer : SangonomiyaSakunovi
 //Discription:
 
-namespace Common.StateCode
+namespace SangoCommon.StateCode
 {
     public enum RarityCode
     {

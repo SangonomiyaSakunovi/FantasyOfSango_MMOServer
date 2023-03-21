@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using PlayerMigration;
 using SangoCommon.ArtifactCode;
+using SangoCommon.GameObjectCode;
 using SangoCommon.ElementCode;
 using SangoCommon.StateCode;
 using SangoCommon.ComBatCode;
@@ -13,8 +14,8 @@ using SangoCommon.WeaponCode;
 namespace PlayerMigration.Migrations
 {
     [DbContext(typeof(PlayerContext))]
-    [Migration("20230309105242_20230309")]
-    partial class _20230309
+    [Migration("20230321085928_test20230321")]
+    partial class test20230321
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,14 +48,16 @@ namespace PlayerMigration.Migrations
 
                     b.Property<int>("Attack");
 
+                    b.Property<int>("Avater")
+                        .HasMaxLength(64);
+
                     b.Property<int>("Defence");
 
                     b.Property<int>("ElementGauge");
 
                     b.Property<int>("ElementType");
 
-                    b.Property<int>("HP")
-                        .HasMaxLength(64);
+                    b.Property<int>("HP");
 
                     b.Property<int>("HPFull");
 

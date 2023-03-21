@@ -1,4 +1,4 @@
-﻿namespace Common.DataCache.PositionCache
+﻿namespace SangoCommon.DataCache.PositionCache
 {
     public class TransformCache
     {

@@ -1,7 +1,7 @@
-﻿using Common.ComBatCode;
-using Common.DataCache.AttackCache;
-using Common.DataCache.PlayerDataCache;
-using Common.GameObjectCode;
+﻿using SangoCommon.ComBatCode;
+using SangoCommon.DataCache.AttackCache;
+using SangoCommon.DataCache.PlayerDataCache;
+using SangoCommon.GameObjectCode;
 using FantasyOfSango.Base;
 using FantasyOfSango.Cache;
 

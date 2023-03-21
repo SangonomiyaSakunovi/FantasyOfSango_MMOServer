@@ -1,4 +1,4 @@
-﻿using Common.ArtifactCode;
+﻿using SangoCommon.ArtifactCode;
 
 namespace PlayerData
 {

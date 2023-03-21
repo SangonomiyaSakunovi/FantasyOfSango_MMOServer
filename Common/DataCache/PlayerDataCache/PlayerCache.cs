@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Common.DataCache.PlayerDataCache
+namespace SangoCommon.DataCache.PlayerDataCache
 {
     public class PlayerCache
     {

@@ -1,7 +1,7 @@
 ﻿//Developer : SangonomiyaSakunovi
 //Discription:
 
-namespace Common.ElementCode
+namespace SangoCommon.ElementCode
 {
     public enum ElementTypeCode
     {

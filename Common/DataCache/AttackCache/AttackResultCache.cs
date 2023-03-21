@@ -1,6 +1,6 @@
-﻿using Common.DataCache.PlayerDataCache;
+﻿using SangoCommon.DataCache.PlayerDataCache;
 
-namespace Common.DataCache.AttackCache
+namespace SangoCommon.DataCache.AttackCache
 {
     public class AttackResultCache
     {

@@ -1,7 +1,7 @@
 ﻿//Developer : SangonomiyaSakunovi
 //Discription:
 
-namespace Common.ComBatCode
+namespace SangoCommon.ComBatCode
 {
     public enum SkillCode
     {

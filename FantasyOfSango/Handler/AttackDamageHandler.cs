@@ -1,6 +1,6 @@
-﻿using Common.DataCache.AttackCache;
-using Common.ServerCode;
-using Common.Tools;
+﻿using SangoCommon.DataCache.AttackCache;
+using SangoCommon.ServerCode;
+using SangoCommon.Tools;
 using FantasyOfSango.Base;
 using FantasyOfSango.Cache;
 using FantasyOfSango.System;

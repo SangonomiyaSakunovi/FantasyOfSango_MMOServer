@@ -1,4 +1,4 @@
-﻿namespace Common.ArtifactCode
+﻿namespace SangoCommon.ArtifactCode
 {
     public enum ArtifactNameCode
     {

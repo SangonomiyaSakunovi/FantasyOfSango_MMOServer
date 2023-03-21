@@ -1,6 +1,6 @@
-﻿using Common.ComBatCode;
-using Common.StateCode;
-using Common.WeaponCode;
+﻿using SangoCommon.ComBatCode;
+using SangoCommon.StateCode;
+using SangoCommon.WeaponCode;
 
 //Developer : SangonomiyaSakunovi
 //Discription:

@@ -1,7 +1,7 @@
-﻿using Common.Constant;
-using Common.ElementCode;
+﻿using SangoCommon.Constant;
+using SangoCommon.ElementCode;
 
-namespace Common.DataCache.ElementCache
+namespace SangoCommon.DataCache.ElementCache
 {
     public class ElementApplicationCache
     {

@@ -116,9 +116,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
+    <ProjectReference Include="..\Common\SangoCommon.csproj">
       <Project>{87c85a47-f0c0-42fb-8953-e8bef004299c}</Project>
-      <Name>Common</Name>
+      <Name>SangoCommon</Name>
     </ProjectReference>
     <ProjectReference Include="..\PlayerData\PlayerData.csproj">
       <Project>{be1a0583-5be2-4e19-979a-55c55f2abd6c}</Project>

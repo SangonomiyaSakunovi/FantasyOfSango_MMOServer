@@ -1,7 +1,7 @@
 ﻿//Developer : SangonomiyaSakunovi
 //Discription:
 
-namespace Common.ServerCode
+namespace SangoCommon.ServerCode
 {
     //The Request and Response Code should define here
     public enum OperationCode : byte

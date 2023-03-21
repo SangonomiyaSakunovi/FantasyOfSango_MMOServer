@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using PlayerMigration;
-using Common.ArtifactCode;
-using Common.ElementCode;
-using Common.StateCode;
-using Common.ComBatCode;
-using Common.WeaponCode;
+using SangoCommon.ArtifactCode;
+using SangoCommon.ElementCode;
+using SangoCommon.StateCode;
+using SangoCommon.ComBatCode;
+using SangoCommon.WeaponCode;
 
 namespace PlayerMigration.Migrations
 {

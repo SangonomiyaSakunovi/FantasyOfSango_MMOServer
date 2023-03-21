@@ -1,4 +1,4 @@
-﻿using Common.ServerCode;
+﻿using SangoCommon.ServerCode;
 using Photon.SocketServer;
 using System.Text.Json;
 

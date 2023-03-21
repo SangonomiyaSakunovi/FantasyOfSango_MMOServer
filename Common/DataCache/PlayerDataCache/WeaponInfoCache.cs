@@ -1,9 +1,9 @@
-﻿using Common.ComBatCode;
-using Common.StateCode;
-using Common.WeaponCode;
+﻿using SangoCommon.ComBatCode;
+using SangoCommon.StateCode;
+using SangoCommon.WeaponCode;
 using System;
 
-namespace Common.DataCache.PlayerDataCache
+namespace SangoCommon.DataCache.PlayerDataCache
 {
     [Serializable]
     public class WeaponInfoCache

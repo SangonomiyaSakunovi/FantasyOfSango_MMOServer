@@ -1,9 +1,9 @@
-﻿using Common.ArtifactCode;
-using Common.ComBatCode;
-using Common.ElementCode;
-using Common.GameObjectCode;
-using Common.StateCode;
-using Common.WeaponCode;
+﻿using SangoCommon.ArtifactCode;
+using SangoCommon.ComBatCode;
+using SangoCommon.ElementCode;
+using SangoCommon.GameObjectCode;
+using SangoCommon.StateCode;
+using SangoCommon.WeaponCode;
 using PlayerData;
 using PlayerMigration;
 using System.Collections.Generic;

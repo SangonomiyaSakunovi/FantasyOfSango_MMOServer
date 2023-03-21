@@ -1,7 +1,7 @@
 ﻿//Developer : SangonomiyaSakunovi
 //Discription:
 
-namespace Common.ServerCode
+namespace SangoCommon.ServerCode
 {
     public enum ReturnCode : short
     {

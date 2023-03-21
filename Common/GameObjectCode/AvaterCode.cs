@@ -1,4 +1,4 @@
-﻿namespace Common.GameObjectCode
+﻿namespace SangoCommon.GameObjectCode
 {
     public enum AvaterCode
     {

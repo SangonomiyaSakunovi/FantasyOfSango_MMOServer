@@ -1,7 +1,7 @@
-﻿using Common.ArtifactCode;
-using Common.ComBatCode;
-using Common.StateCode;
-using Common.WeaponCode;
+﻿using SangoCommon.ArtifactCode;
+using SangoCommon.ComBatCode;
+using SangoCommon.StateCode;
+using SangoCommon.WeaponCode;
 using PlayerData;
 using System;
 using System.Collections.Generic;

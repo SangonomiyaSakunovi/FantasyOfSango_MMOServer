@@ -53,13 +53,13 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{87c85a47-f0c0-42fb-8953-e8bef004299c}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <ProjectReference Include="..\Common\SangoCommon.csproj">
+      <Project>{87c85a47-f0c0-42fb-8953-e8bef004299c}</Project>
+      <Name>SangoCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

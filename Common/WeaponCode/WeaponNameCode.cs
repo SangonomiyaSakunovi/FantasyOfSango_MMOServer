@@ -1,7 +1,7 @@
 ﻿//Developer : SangonomiyaSakunovi
 //Discription:
 
-namespace Common.WeaponCode
+namespace SangoCommon.WeaponCode
 {
     public enum WeaponNameCode
     {
