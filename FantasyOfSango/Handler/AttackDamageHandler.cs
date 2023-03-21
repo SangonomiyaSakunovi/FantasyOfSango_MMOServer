@@ -6,7 +6,6 @@ using FantasyOfSango.Cache;
 using FantasyOfSango.System;
 using Photon.SocketServer;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace FantasyOfSango.Handler
 {
@@ -22,12 +21,12 @@ namespace FantasyOfSango.Handler
             AttackDamageCache attackDamageCache = DeJsonString<AttackDamageCache>(attackDamageJson);
             AttackResultCache attackResultCache = OnlineAttackSystem.Instance.GetAttackResult(attackDamageCache);
             if (attackResultCache != null)
-            {                
+            {
                 string attackResultJson = SetJsonString(attackResultCache);
                 SangoServer.Log.Info(attackResultJson);
                 Dictionary<byte, object> dict = new Dictionary<byte, object>();
                 dict.Add((byte)ParameterCode.AttackResult, attackResultJson);
-                
+
                 OperationResponse response = new OperationResponse(operationRequest.OperationCode);
                 response.SetParameters(dict);
                 peer.SendOperationResponse(response, sendParameters);
@@ -35,7 +34,7 @@ namespace FantasyOfSango.Handler
                 List<ClientPeer> onlinePeerList = OnlineAccountCache.Instance.GetOtherOnlinePlayerPeer(peer);
                 foreach (ClientPeer onlinePeer in onlinePeerList)
                 {
-                    EventData eventData = new EventData((byte)EventCode.AttackResult);                   
+                    EventData eventData = new EventData((byte)EventCode.AttackResult);
                     eventData.SetParameters(dict);
                     onlinePeer.SendEvent(eventData, sendParameters);
                 }
