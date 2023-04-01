@@ -13,6 +13,8 @@ namespace PlayerMigration
         {
             string ConnectStr = "Data Source = SANGONOMIYAPC; Initial Catalog = FantasyOfSango_Player;" +
                 "User ID = ROOT; Password = root;";
+            //string ConnectStr = "Data Source = IZE4NVUT7CZL1RZ; Initial Catalog = FantasyOfSango_Player;" +
+            //"User ID = ROOT; Password = root;";
             optionsBuilder.UseSqlServer(connectionString: ConnectStr);
         }
         //The RefenrenceKey structure should define here

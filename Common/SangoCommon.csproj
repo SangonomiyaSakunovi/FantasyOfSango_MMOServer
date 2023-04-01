@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArtifactCode\ArtifactNameCode.cs" />
+    <Compile Include="ComBatCode\FightTypeCode.cs" />
     <Compile Include="ComBatCode\SkillCode.cs" />
     <Compile Include="Constant\ElementConstant.cs" />
     <Compile Include="Constant\ThreadsConstant.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="DataCache\PositionCache\TransformCache.cs" />
     <Compile Include="DataCache\PositionCache\QuaternionCache.cs" />
     <Compile Include="DataCache\PositionCache\Vector3Cache.cs" />
+    <Compile Include="ElementCode\ElementReactionCode.cs" />
     <Compile Include="ElementCode\ElementTypeCode.cs" />
     <Compile Include="GameObjectCode\AvaterCode.cs" />
     <Compile Include="MaterialCode\WeaponMaterialCode.cs" />
