@@ -1,10 +1,12 @@
-﻿using SangoCommon.GameObjectCode;
-using SangoCommon.ServerCode;
-using SangoCommon.Tools;
-using FantasyOfSango.Base;
+﻿using FantasyOfSango.Base;
 using FantasyOfSango.Cache;
 using Photon.SocketServer;
 using PhotonHostRuntimeInterfaces;
+using SangoCommon.DataCache.PlayerDataCache;
+using SangoCommon.LocationCode;
+using SangoCommon.ServerCode;
+using SangoCommon.Tools;
+using static SangoCommon.Struct.CommonStruct;
 
 //Developer : SangonomiyaSakunovi
 //Discription: ClientPeer behaviours should define here
@@ -14,6 +16,9 @@ namespace FantasyOfSango
     public class ClientPeer : Photon.SocketServer.ClientPeer
     {
         public string Account { get; private set; }
+        public AOISceneGrid AOISceneGrid { get; private set; }
+        public int OnlinePlayerAvaterIndex { get; private set; }
+        public PlayerCache PlayerCache { get; private set; }
 
         //Call father class to intiate
         public ClientPeer(InitRequest initRequest) : base(initRequest)
@@ -47,6 +52,20 @@ namespace FantasyOfSango
         public void SetAccount(string account)
         {
             Account = account;
+        }
+
+        public void SetAOIGrid(AOISceneGrid aoiSceneGrid)
+        {
+            AOISceneGrid = aoiSceneGrid;
+        }
+
+        public void SetPlayerCache(PlayerCache playerCache)
+        {
+            PlayerCache = playerCache;
+        }
+        public void SetOnlinePlayerAvaterIndex(int index)
+        {
+            OnlinePlayerAvaterIndex = index;
         }        
     }
 }

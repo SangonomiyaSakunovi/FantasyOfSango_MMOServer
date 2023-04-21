@@ -113,6 +113,8 @@ namespace FantasyOfSango
         {
             OnlineAttackSystem onlineAttackSystem = new OnlineAttackSystem();
             onlineAttackSystem.InitSystem();
+            AOISystem aoiSystem = new AOISystem();
+            aoiSystem.InitSystem();
         }
 
         #region Threads

@@ -11,12 +11,24 @@ namespace PlayerMigration
         //SQL configure
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string ConnectStr = "Data Source = SANGONOMIYAPC; Initial Catalog = FantasyOfSango_Player;" +
-                "User ID = ROOT; Password = root;";
-            //string ConnectStr = "Data Source = IZE4NVUT7CZL1RZ; Initial Catalog = FantasyOfSango_Player;" +
-            //"User ID = ROOT; Password = root;";
+            string ConnectStr = SetCoonectStr(ConfigureModeCode.Offline);
             optionsBuilder.UseSqlServer(connectionString: ConnectStr);
         }
+
+        private string SetCoonectStr(ConfigureModeCode mode)
+        {
+            string connectStr = null;
+            if (mode == ConfigureModeCode.Online)
+            {
+                connectStr = "Data Source = IZE4NVUT7CZL1RZ; Initial Catalog = FantasyOfSango_Player;" + "User ID = ROOT; Password = root;";
+            }
+            else if (mode == ConfigureModeCode.Offline)
+            {
+                connectStr = "Data Source = SANGONOMIYAPC; Initial Catalog = FantasyOfSango_Player;" + "User ID = ROOT; Password = root;";
+            }
+            return connectStr;
+        }
+
         //The RefenrenceKey structure should define here
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,5 +43,11 @@ namespace PlayerMigration
         public DbSet<AttributeInfo> AttributeInfos { get; set; }
         public DbSet<WeaponInfo> WeaponInfos { get; set; }
         public DbSet<ArtifactInfo> ArtifactInfos { get; set; }
+
+        private enum ConfigureModeCode
+        {
+            Offline,
+            Online
+        }
     }
 }

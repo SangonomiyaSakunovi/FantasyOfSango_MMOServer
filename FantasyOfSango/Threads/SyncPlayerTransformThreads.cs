@@ -1,11 +1,12 @@
-﻿using SangoCommon.Constant;
-using SangoCommon.DataCache.PositionCache;
-using SangoCommon.ServerCode;
-using FantasyOfSango.Base;
+﻿using FantasyOfSango.Base;
 using FantasyOfSango.Cache;
 using Photon.SocketServer;
+using SangoCommon.Constant;
+using SangoCommon.DataCache.PositionCache;
+using SangoCommon.ServerCode;
 using System.Collections.Generic;
 using System.Threading;
+using static SangoCommon.Struct.CommonStruct;
 
 namespace FantasyOfSango.Threads
 {
@@ -25,7 +26,7 @@ namespace FantasyOfSango.Threads
             while (true)
             {
                 Thread.Sleep(ThreadsConstant.SyncPlayerTransformTime);
-                SendTransform();
+                SendAOITransform();
             }
         }
         public override void Stop()
@@ -33,29 +34,29 @@ namespace FantasyOfSango.Threads
             _thread.Abort();
         }
 
-        private void SendTransform()
+        private void SendAOITransform()
         {
-            List<TransformCache> playerTransformCacheList = new List<TransformCache>();
-            foreach (var item in OnlineAccountCache.Instance.OnlinePlayerTransformDict.Values)
+            List<ClientPeer> onlinePeerList = OnlineAccountCache.Instance.GetOnlinePlayerPeer();
+            for (int i = 0; i < onlinePeerList.Count; i++)
             {
-                lock (item)
+                ClientPeer peer = onlinePeerList[i];
+                AOISceneGrid aoiSceneGrid = peer.AOISceneGrid;
+                List<TransformCache> surroundAOITransformCacheList = new List<TransformCache>();
+                if (aoiSceneGrid != null)
                 {
-                    TransformCache playerPositionCache = item;
-                    playerTransformCacheList.Add(playerPositionCache);
-                }                
-            }
-            string playerTransformCacheListJson = SetJsonString(playerTransformCacheList);
-            Dictionary<byte, object> dict = new Dictionary<byte, object>();
-            dict.Add((byte)ParameterCode.PlayerTransformCacheList, playerTransformCacheListJson);
-
-            foreach (var item in OnlineAccountCache.Instance.GetOnlinePlayerPeer())
-            {
-                lock (item)
-                {
-                    EventData eventData = new EventData((byte)EventCode.SyncPlayerTransform);
-                    eventData.SetParameters(dict);
-                    item.SendEvent(eventData, new SendParameters());
-                }                
+                    List<string> surroundAOIAccountList = OnlineAccountCache.Instance.GetSurroundAOIAccount(aoiSceneGrid);
+                    for (int j = 0; j < surroundAOIAccountList.Count; j++)
+                    {
+                        TransformCache aoiTransformCache = OnlineAccountCache.Instance.GetAccountTransfromCache(surroundAOIAccountList[j]);
+                        surroundAOITransformCacheList.Add(aoiTransformCache);
+                    }
+                }
+                string surroundAOITransformCacheListJson = SetJsonString(surroundAOITransformCacheList);
+                Dictionary<byte, object> dict = new Dictionary<byte, object>();
+                dict.Add((byte)ParameterCode.PlayerTransformCacheList, surroundAOITransformCacheListJson);
+                EventData eventData = new EventData((byte)EventCode.SyncPlayerTransform);
+                eventData.SetParameters(dict);
+                peer.SendEvent(eventData, new SendParameters());
             }
         }
     }

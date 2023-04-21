@@ -111,7 +111,9 @@
     <Compile Include="ElementCode\ElementReactionCode.cs" />
     <Compile Include="ElementCode\ElementTypeCode.cs" />
     <Compile Include="GameObjectCode\AvaterCode.cs" />
+    <Compile Include="LocationCode\SceneCode.cs" />
     <Compile Include="MaterialCode\WeaponMaterialCode.cs" />
+    <Compile Include="Struct\CommonStruct.cs" />
     <Compile Include="Tools\GetEnum.cs" />
     <Compile Include="Tools\ReadFile.cs" />
     <Compile Include="WeaponCode\WeaponNameCode.cs" />
@@ -131,6 +133,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GridCode\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
