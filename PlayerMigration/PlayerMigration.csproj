@@ -310,6 +310,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Common\SangoCommon.csproj">
       <Project>{87c85a47-f0c0-42fb-8953-e8bef004299c}</Project>
       <Name>SangoCommon</Name>
@@ -318,9 +321,6 @@
       <Project>{be1a0583-5be2-4e19-979a-55c55f2abd6c}</Project>
       <Name>PlayerData</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

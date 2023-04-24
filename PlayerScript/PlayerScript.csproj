@@ -257,6 +257,13 @@
     <Compile Include="WeaponAdd.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Common\SangoCommon.csproj">
       <Project>{87c85a47-f0c0-42fb-8953-e8bef004299c}</Project>
       <Name>SangoCommon</Name>
@@ -269,13 +276,6 @@
       <Project>{c0252093-0c97-40a6-bb79-bf30cf9b0831}</Project>
       <Name>PlayerMigration</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

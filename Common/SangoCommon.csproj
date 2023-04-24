@@ -17,7 +17,7 @@
     <DebugSymbols>false</DebugSymbols>
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\..\Client\TestClient\FantasyOfSango\FantasyOfSango_Client\Assets\Plugins\</OutputPath>
+    <OutputPath>..\..\FantasyOfSango_Client\Assets\Plugins\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArtifactCode\ArtifactNameCode.cs" />
+    <Compile Include="Class\AStarGridPoint.cs" />
     <Compile Include="ComBatCode\FightTypeCode.cs" />
     <Compile Include="ComBatCode\SkillCode.cs" />
     <Compile Include="Constant\ElementConstant.cs" />
@@ -106,8 +107,6 @@
     <Compile Include="DataCache\PlayerDataCache\WeaponInfoCache.cs" />
     <Compile Include="DataCache\AttackCache\AttackCommandCache.cs" />
     <Compile Include="DataCache\PositionCache\TransformCache.cs" />
-    <Compile Include="DataCache\PositionCache\QuaternionCache.cs" />
-    <Compile Include="DataCache\PositionCache\Vector3Cache.cs" />
     <Compile Include="ElementCode\ElementReactionCode.cs" />
     <Compile Include="ElementCode\ElementTypeCode.cs" />
     <Compile Include="GameObjectCode\AvaterCode.cs" />
@@ -134,8 +133,6 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GridCode\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,7 +1,7 @@
 ﻿using SangoCommon.ComBatCode;
-using SangoCommon.DataCache.PositionCache;
 using SangoCommon.ElementCode;
 using System;
+using static SangoCommon.Struct.CommonStruct;
 
 namespace SangoCommon.DataCache.AttackCache
 {
@@ -12,8 +12,8 @@ namespace SangoCommon.DataCache.AttackCache
         public string DamagerAccount { get; set; }
         public SkillCode SkillCode { get; set; }
         public ElementReactionCode ElementReactionCode { get; set; }
-        public Vector3Cache AttackerPosition { get; set; }
-        public Vector3Cache DamagerPosition { get; set; }
+        public Vector3Position AttackerVector3Position { get; set; }
+        public Vector3Position DamagerVector3Position { get; set; }
         public DateTime DateTime { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace FantasyOfSango.Handler
             string playerTransformJson = DictTools.GetStringValue(operationRequest.Parameters, (byte)ParameterCode.PlayerTransformCache);
             TransformCache playerTransformCache = DeJsonString<TransformCache>(playerTransformJson);
             OnlineAccountCache.Instance.SetOnlinePlayerTransform(peer, playerTransformCache);
-            OnlineAccountCache.Instance.UpdateOnlineAccountAOIInfo(peer.Account, SceneCode.Island, playerTransformCache.Vector3Cache.X, playerTransformCache.Vector3Cache.Z);
+            OnlineAccountCache.Instance.UpdateOnlineAccountAOIInfo(peer.Account, SceneCode.Island, playerTransformCache.Vector3Position.X, playerTransformCache.Vector3Position.Z);
         }
     }
 }

@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Photon_v4\FantasyOfSango_Photon\deploy\FantasyOfSango\bin\</OutputPath>
+    <OutputPath>..\..\FantasyOfSango_Photon\deploy\FantasyOfSango\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,22 +33,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ExitGames.Logging.Log4Net">
-      <HintPath>..\..\..\..\..\libs\ExitGames.Logging.Log4Net.dll</HintPath>
+      <HintPath>..\PhotonLibs\ExitGames.Logging.Log4Net.dll</HintPath>
     </Reference>
     <Reference Include="ExitGamesLibs">
-      <HintPath>..\..\..\..\..\libs\ExitGamesLibs.dll</HintPath>
+      <HintPath>..\PhotonLibs\ExitGamesLibs.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>..\..\..\..\..\libs\log4net.dll</HintPath>
+      <HintPath>..\PhotonLibs\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Photon.SocketServer">
-      <HintPath>..\..\..\..\..\libs\Photon.SocketServer.dll</HintPath>
+      <HintPath>..\PhotonLibs\Photon.SocketServer.dll</HintPath>
     </Reference>
     <Reference Include="PhotonHostRuntimeInterfaces">
-      <HintPath>..\..\..\..\..\libs\PhotonHostRuntimeInterfaces.dll</HintPath>
+      <HintPath>..\PhotonLibs\PhotonHostRuntimeInterfaces.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
@@ -106,6 +106,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SangoServer.cs" />
     <Compile Include="System\AOISystem.cs" />
+    <Compile Include="System\AStarSystem.cs" />
     <Compile Include="System\OnlineAttackSystem.cs" />
     <Compile Include="Threads\SyncPlayerTransformThreads.cs" />
   </ItemGroup>
@@ -115,6 +116,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Service\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\SangoCommon.csproj">
@@ -129,12 +136,6 @@
       <Project>{10ad7732-1d85-4881-9e46-01be888077c5}</Project>
       <Name>PlayerScript</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
