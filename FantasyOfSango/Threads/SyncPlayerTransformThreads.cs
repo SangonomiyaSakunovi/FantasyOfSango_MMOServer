@@ -1,12 +1,12 @@
-﻿using FantasyOfSango.Base;
-using FantasyOfSango.Cache;
+﻿using FantasyOfSango.Bases;
+using FantasyOfSango.Caches;
 using Photon.SocketServer;
-using SangoCommon.Constant;
-using SangoCommon.DataCache.PositionCache;
-using SangoCommon.ServerCode;
+using SangoCommon.Constants;
+using SangoCommon.Classs;
+using SangoCommon.Enums;
 using System.Collections.Generic;
 using System.Threading;
-using static SangoCommon.Struct.CommonStruct;
+using SangoCommon.Structs;
 
 namespace FantasyOfSango.Threads
 {
@@ -41,13 +41,13 @@ namespace FantasyOfSango.Threads
             {
                 ClientPeer peer = onlinePeerList[i];
                 AOISceneGrid aoiSceneGrid = peer.AOISceneGrid;
-                List<TransformCache> surroundAOITransformCacheList = new List<TransformCache>();
+                List<TransformOnline> surroundAOITransformCacheList = new List<TransformOnline>();
                 if (aoiSceneGrid != null)
                 {
                     List<string> surroundAOIAccountList = OnlineAccountCache.Instance.GetSurroundAOIAccount(aoiSceneGrid);
                     for (int j = 0; j < surroundAOIAccountList.Count; j++)
                     {
-                        TransformCache aoiTransformCache = OnlineAccountCache.Instance.GetAccountTransfromCache(surroundAOIAccountList[j]);
+                        TransformOnline aoiTransformCache = OnlineAccountCache.Instance.GetAccountTransfromCache(surroundAOIAccountList[j]);
                         surroundAOITransformCacheList.Add(aoiTransformCache);
                     }
                 }

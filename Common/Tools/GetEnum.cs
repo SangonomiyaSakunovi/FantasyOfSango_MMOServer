@@ -8,7 +8,7 @@ namespace SangoCommon.Tools
     public class GetEnum
     {
         /// <summary>
-        /// Get Enum, you need specify the EnumType and String, the return is [Enum]
+        /// Get Enums, you need specify the EnumType and String, the return is [Enums]
         /// </summary>
         /// <param name="enumType"></param>
         /// <param name="value"></param>

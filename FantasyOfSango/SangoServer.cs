@@ -1,16 +1,16 @@
-﻿using SangoCommon.ServerCode;
-using ExitGames.Logging;
+﻿using ExitGames.Logging;
 using ExitGames.Logging.Log4Net;
-using FantasyOfSango.Base;
-using FantasyOfSango.Cache;
-using FantasyOfSango.Handler;
-using FantasyOfSango.System;
+using FantasyOfSango.Bases;
+using FantasyOfSango.Caches;
+using FantasyOfSango.Handlers;
+using FantasyOfSango.Services;
+using FantasyOfSango.Systems;
 using FantasyOfSango.Threads;
 using log4net.Config;
 using Photon.SocketServer;
+using SangoCommon.Enums;
 using System.Collections.Generic;
 using System.IO;
-
 //Developer : SangonomiyaSakunovi
 //Discription: The main cs of PhotonServer, give the Config
 
@@ -29,7 +29,7 @@ namespace FantasyOfSango
 
         public Dictionary<OperationCode, BaseHandler> HandlerDict = new Dictionary<OperationCode, BaseHandler>();
 
- 
+
 
         //Build connectioner peer
         protected override PeerBase CreatePeer(InitRequest initRequest)
@@ -58,13 +58,13 @@ namespace FantasyOfSango
             //Use _log to show customize info
             Log.Info("Sango Server is Running");
 
-            //Init the Service
-
-            //Init the Handler
+            //Init the Services
+            InitService();
+            //Init the Handlers
             InitHandler();
-            //Init the Cache
+            //Init the Caches
             InitCache();
-            //Init the System
+            //Init the Systems
             InitSystem();
             //Init the Threads
             InitThreads();
@@ -115,6 +115,12 @@ namespace FantasyOfSango
             onlineAttackSystem.InitSystem();
             AOISystem aoiSystem = new AOISystem();
             aoiSystem.InitSystem();
+        }
+
+        public void InitService()
+        {
+            MongoDBService mongoDBService = new MongoDBService();
+            mongoDBService.InitService();
         }
 
         #region Threads

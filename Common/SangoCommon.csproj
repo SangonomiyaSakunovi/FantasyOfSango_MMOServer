@@ -17,7 +17,7 @@
     <DebugSymbols>false</DebugSymbols>
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\FantasyOfSango_Client\Assets\Plugins\</OutputPath>
+    <OutputPath>..\..\FantasyOfSangoClient\Assets\Plugins\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -91,38 +91,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArtifactCode\ArtifactNameCode.cs" />
-    <Compile Include="Class\AStarGridPoint.cs" />
-    <Compile Include="ComBatCode\FightTypeCode.cs" />
-    <Compile Include="ComBatCode\SkillCode.cs" />
-    <Compile Include="Constant\ElementConstant.cs" />
-    <Compile Include="Constant\ThreadsConstant.cs" />
-    <Compile Include="Constant\TimeConstant.cs" />
-    <Compile Include="DataCache\AttackCache\AttackDamageCache.cs" />
-    <Compile Include="DataCache\AttackCache\AttackResultCache.cs" />
-    <Compile Include="DataCache\ElementCache\ElementApplicationCache.cs" />
-    <Compile Include="DataCache\PlayerDataCache\ArtifactInfoCache.cs" />
-    <Compile Include="DataCache\PlayerDataCache\AttributeInfoCache.cs" />
-    <Compile Include="DataCache\PlayerDataCache\PlayerCache.cs" />
-    <Compile Include="DataCache\PlayerDataCache\WeaponInfoCache.cs" />
-    <Compile Include="DataCache\AttackCache\AttackCommandCache.cs" />
-    <Compile Include="DataCache\PositionCache\TransformCache.cs" />
-    <Compile Include="ElementCode\ElementReactionCode.cs" />
-    <Compile Include="ElementCode\ElementTypeCode.cs" />
-    <Compile Include="GameObjectCode\AvaterCode.cs" />
-    <Compile Include="LocationCode\SceneCode.cs" />
-    <Compile Include="MaterialCode\WeaponMaterialCode.cs" />
-    <Compile Include="Struct\CommonStruct.cs" />
+    <Compile Include="Classs\AttackClass.cs" />
+    <Compile Include="Classs\AttributeClass.cs" />
+    <Compile Include="Classs\ElementClass.cs" />
+    <Compile Include="Classs\GridClass.cs" />
+    <Compile Include="Classs\PlayerClass.cs" />
+    <Compile Include="Classs\TransformClass.cs" />
+    <Compile Include="Constants\ElementConstant.cs" />
+    <Compile Include="Constants\ThreadsConstant.cs" />
+    <Compile Include="Constants\TimeConstant.cs" />
+    <Compile Include="Enums\AvaterEnum.cs" />
+    <Compile Include="Enums\CombatEnum.cs" />
+    <Compile Include="Enums\ElementEnum.cs" />
+    <Compile Include="Enums\SceneEnum.cs" />
+    <Compile Include="Enums\ServerEnum.cs" />
+    <Compile Include="Structs\GridStruct.cs" />
+    <Compile Include="Structs\TransformStruct.cs" />
     <Compile Include="Tools\GetEnum.cs" />
     <Compile Include="Tools\ReadFile.cs" />
-    <Compile Include="WeaponCode\WeaponNameCode.cs" />
-    <Compile Include="LocationCode\DomainCode.cs" />
-    <Compile Include="ServerCode\EventCode.cs" />
-    <Compile Include="ServerCode\OperationCode.cs" />
-    <Compile Include="ServerCode\ParameterCode.cs" />
-    <Compile Include="StateCode\RarityCode.cs" />
-    <Compile Include="ServerCode\ReturnCode.cs" />
-    <Compile Include="WeaponCode\WeaponTypeCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\DictTools.cs" />
   </ItemGroup>
