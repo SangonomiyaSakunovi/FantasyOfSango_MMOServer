@@ -180,6 +180,7 @@
     <Compile Include="Bases\BaseThreads.cs" />
     <Compile Include="Caches\OnlineAccountCache.cs" />
     <Compile Include="Caches\OnlineAttackCache.cs" />
+    <Compile Include="Constants\MongoDBConstant.cs" />
     <Compile Include="Handlers\AttackCommandHandler.cs" />
     <Compile Include="Handlers\AttackDamageHandler.cs" />
     <Compile Include="Handlers\ChooseAvaterHandler.cs" />

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SangoCommon.Classs
 {
+    [Serializable]
     public class UserInfo
     {
         public string _id { get; set; }
@@ -10,8 +12,10 @@ namespace SangoCommon.Classs
         public string Nickname { get; set; }
     }
 
+    [Serializable]
     public class AvaterInfo
     {
+        public string _id { get; set; }
         public string Account { get; set; }
         public string Nickname { get; set; }
         public List<AvaterAttributeInfo> AttributeInfoList { get; set; }

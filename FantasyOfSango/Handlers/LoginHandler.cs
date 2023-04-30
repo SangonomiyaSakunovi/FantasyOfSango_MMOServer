@@ -1,5 +1,6 @@
 ﻿using FantasyOfSango.Bases;
 using FantasyOfSango.Caches;
+using FantasyOfSango.Constants;
 using FantasyOfSango.Services;
 using Photon.SocketServer;
 using SangoCommon.Classs;
@@ -20,11 +21,11 @@ namespace FantasyOfSango.Handlers
         {
             string account = DictTools.GetStringValue(operationRequest.Parameters, (byte)ParameterCode.Account);
             string password = DictTools.GetStringValue(operationRequest.Parameters, (byte)ParameterCode.Password);
-            string collectionName = "UserInfos";
-            string objectId = "UserInfo" + account;
+            string collectionName = MongoDBCollectionConstant.UserInfos;
+            string objectId = MongoDBIdConstant.UserInfo_ + account;
             bool isAccountPasswordMatch = false;
             bool isAccountOnline = false;
-            UserInfo lookUpUserInfo = MongoDBService.Instance.LookUpOneData<UserInfo>(collectionName, account);
+            UserInfo lookUpUserInfo = MongoDBService.Instance.LookUpOneData<UserInfo>(collectionName,objectId);
             if (lookUpUserInfo != null)
             {
                 if (lookUpUserInfo.Password == password)
@@ -37,15 +38,17 @@ namespace FantasyOfSango.Handlers
             if (isAccountPasswordMatch)
             {
                 if (!isAccountOnline)
-                {
-                    response.ReturnCode = (short)ReturnCode.Success;
+                {                   
                     lock (this)
                     {
-                        AvaterInfo playerCache = null;
+                        string avaterCollectionName = MongoDBCollectionConstant.AvaterInfos;
+                        string avaterObjectId = MongoDBIdConstant.AvaterInfo_ + account;
+                        AvaterInfo avaterInfo = MongoDBService.Instance.LookUpOneData<AvaterInfo>(avaterCollectionName, avaterObjectId);
                         SangoServer.Instance.clientPeer.SetAccount(account);
-                        OnlineAccountCache.Instance.AddOnlineAccount(SangoServer.Instance.clientPeer, account, playerCache);
+                        OnlineAccountCache.Instance.AddOnlineAccount(SangoServer.Instance.clientPeer, account, avaterInfo);
                         OnlineAccountCache.Instance.SetOnlineAvaterIndex(account, AvaterCode.SangonomiyaKokomi);
                     }
+                    response.ReturnCode = (short)ReturnCode.Success;
                 }
                 else
                 {
