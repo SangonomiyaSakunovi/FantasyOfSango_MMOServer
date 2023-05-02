@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
+//Developer : SangonomiyaSakunovi
+//Discription:
+
 namespace SangoCommon.Classs
 {
     [Serializable]

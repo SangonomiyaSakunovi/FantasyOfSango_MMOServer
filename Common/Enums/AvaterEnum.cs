@@ -1,4 +1,7 @@
-﻿namespace SangoCommon.Enums
+﻿//Developer : SangonomiyaSakunovi
+//Discription:
+
+namespace SangoCommon.Enums
 {
     public enum AvaterCode
     {

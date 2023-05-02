@@ -1,6 +1,9 @@
 ﻿using SangoCommon.Constants;
 using SangoCommon.Enums;
 
+//Developer : SangonomiyaSakunovi
+//Discription:
+
 namespace SangoCommon.Classs
 {
     public class ElementApplication

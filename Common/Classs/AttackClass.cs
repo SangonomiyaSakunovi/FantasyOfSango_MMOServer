@@ -2,6 +2,9 @@
 using SangoCommon.Structs;
 using System;
 
+//Developer : SangonomiyaSakunovi
+//Discription:
+
 namespace SangoCommon.Classs
 {
     public class AttackCommand
@@ -29,7 +32,7 @@ namespace SangoCommon.Classs
         public string AttackerAccount { get; set; }
         public string DamagerAccount { get; set; }
         public int DamageNumber { get; set; }
-        public AvaterInfo AttackerPlayerCache { get; set; }
-        public AvaterInfo DamagerPlayerCache { get; set; }
+        public AvaterInfo AttackerAvaterInfo { get; set; }
+        public AvaterInfo DamagerAvaterInfo { get; set; }
     }
 }

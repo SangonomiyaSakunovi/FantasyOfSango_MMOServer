@@ -1,4 +1,7 @@
-﻿namespace FantasyOfSango.Bases
+﻿//Developer : SangonomiyaSakunovi
+//Discription:
+
+namespace FantasyOfSango.Bases
 {
     public class BaseService
     {

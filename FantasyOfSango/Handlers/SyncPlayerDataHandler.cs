@@ -19,10 +19,10 @@ namespace FantasyOfSango.Handlers
 
         public override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters, ClientPeer peer)
         {
-            AvaterInfo playerCache = OnlineAccountCache.Instance.GetOnlinePlayerCache(peer.Account);
+            AvaterInfo playerCache = OnlineAccountCache.Instance.GetOnlineAvaterInfo(peer.Account);
             string playerCacheJson = SetJsonString(playerCache);
             Dictionary<byte, object> dict = new Dictionary<byte, object>();
-            dict.Add((byte)ParameterCode.PlayerCache, playerCacheJson);
+            dict.Add((byte)ParameterCode.AvaterInfo, playerCacheJson);
             OperationResponse response = new OperationResponse(operationRequest.OperationCode);
             response.SetParameters(dict);
             peer.SendOperationResponse(response, sendParameters);

@@ -5,6 +5,9 @@ using SangoCommon.Classs;
 using SangoCommon.Enums;
 using SangoCommon.Tools;
 
+//Developer : SangonomiyaSakunovi
+//Discription:
+
 namespace FantasyOfSango.Handlers
 {
     public class SyncPlayerTransformHandler : BaseHandler
@@ -15,10 +18,10 @@ namespace FantasyOfSango.Handlers
         }
         public override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters, ClientPeer peer)
         {
-            string playerTransformJson = DictTools.GetStringValue(operationRequest.Parameters, (byte)ParameterCode.PlayerTransformCache);
-            TransformOnline playerTransformCache = DeJsonString<TransformOnline>(playerTransformJson);
-            OnlineAccountCache.Instance.SetOnlinePlayerTransform(peer, playerTransformCache);
-            OnlineAccountCache.Instance.UpdateOnlineAccountAOIInfo(peer.Account, SceneCode.Island, playerTransformCache.Vector3Position.X, playerTransformCache.Vector3Position.Z);
+            string playerTransformJson = DictTools.GetStringValue(operationRequest.Parameters, (byte)ParameterCode.PlayerTransform);
+            TransformOnline playerTransform = DeJsonString<TransformOnline>(playerTransformJson);
+            OnlineAccountCache.Instance.SetOnlinePlayerTransform(peer, playerTransform);
+            OnlineAccountCache.Instance.UpdateOnlineAccountAOIInfo(peer.Account, SceneCode.Island, playerTransform.Vector3Position.X, playerTransform.Vector3Position.Z);
         }
     }
 }

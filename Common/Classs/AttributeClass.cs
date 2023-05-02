@@ -1,6 +1,9 @@
 ﻿using SangoCommon.Enums;
 using System;
 
+//Developer : SangonomiyaSakunovi
+//Discription:
+
 namespace SangoCommon.Classs
 {
     [Serializable]

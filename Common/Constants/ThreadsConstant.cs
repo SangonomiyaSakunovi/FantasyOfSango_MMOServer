@@ -1,4 +1,7 @@
-﻿namespace SangoCommon.Constants
+﻿//Developer : SangonomiyaSakunovi
+//Discription:
+
+namespace SangoCommon.Constants
 {
     public class ThreadsConstant
     {

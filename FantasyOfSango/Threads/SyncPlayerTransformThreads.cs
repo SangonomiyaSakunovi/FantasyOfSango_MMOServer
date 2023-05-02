@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Threading;
 using SangoCommon.Structs;
 
+//Developer : SangonomiyaSakunovi
+//Discription:
+
 namespace FantasyOfSango.Threads
 {
     public class SyncPlayerTransformThreads : BaseThreads
@@ -41,19 +44,19 @@ namespace FantasyOfSango.Threads
             {
                 ClientPeer peer = onlinePeerList[i];
                 AOISceneGrid aoiSceneGrid = peer.AOISceneGrid;
-                List<TransformOnline> surroundAOITransformCacheList = new List<TransformOnline>();
+                List<TransformOnline> surroundAOITransformList = new List<TransformOnline>();
                 if (aoiSceneGrid != null)
                 {
                     List<string> surroundAOIAccountList = OnlineAccountCache.Instance.GetSurroundAOIAccount(aoiSceneGrid);
                     for (int j = 0; j < surroundAOIAccountList.Count; j++)
                     {
-                        TransformOnline aoiTransformCache = OnlineAccountCache.Instance.GetAccountTransfromCache(surroundAOIAccountList[j]);
-                        surroundAOITransformCacheList.Add(aoiTransformCache);
+                        TransformOnline aoiTransform = OnlineAccountCache.Instance.GetAccountTransfrom(surroundAOIAccountList[j]);
+                        surroundAOITransformList.Add(aoiTransform);
                     }
                 }
-                string surroundAOITransformCacheListJson = SetJsonString(surroundAOITransformCacheList);
+                string surroundAOITransformListJson = SetJsonString(surroundAOITransformList);
                 Dictionary<byte, object> dict = new Dictionary<byte, object>();
-                dict.Add((byte)ParameterCode.PlayerTransformCacheList, surroundAOITransformCacheListJson);
+                dict.Add((byte)ParameterCode.PlayerTransformList, surroundAOITransformListJson);
                 EventData eventData = new EventData((byte)EventCode.SyncPlayerTransform);
                 eventData.SetParameters(dict);
                 peer.SendEvent(eventData, new SendParameters());

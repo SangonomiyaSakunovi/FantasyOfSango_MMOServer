@@ -5,6 +5,9 @@ using SangoCommon.Enums;
 using SangoCommon.Tools;
 using System.Collections.Generic;
 
+//Developer : SangonomiyaSakunovi
+//Discription:
+
 namespace FantasyOfSango.Handlers
 {
     public class ChooseAvaterHandler : BaseHandler

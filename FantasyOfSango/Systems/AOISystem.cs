@@ -3,6 +3,9 @@ using SangoCommon.Enums;
 using System.Collections.Generic;
 using SangoCommon.Structs;
 
+//Developer : SangonomiyaSakunovi
+//Discription:
+
 namespace FantasyOfSango.Systems
 {
     public class AOISystem : BaseSystem

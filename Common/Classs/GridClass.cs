@@ -1,4 +1,7 @@
-﻿namespace SangoCommon.Classs
+﻿//Developer : SangonomiyaSakunovi
+//Discription:
+
+namespace SangoCommon.Classs
 {
     public class AStarGridPoint
     {

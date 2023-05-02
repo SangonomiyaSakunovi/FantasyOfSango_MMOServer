@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using SangoCommon.Structs;
 
+//Developer : SangonomiyaSakunovi
+//Discription:
+
 namespace FantasyOfSango.Systems
 {
     public class AStarSystem

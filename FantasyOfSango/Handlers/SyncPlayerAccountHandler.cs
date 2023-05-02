@@ -4,6 +4,9 @@ using FantasyOfSango.Caches;
 using Photon.SocketServer;
 using System.Collections.Generic;
 
+//Developer : SangonomiyaSakunovi
+//Discription:
+
 namespace FantasyOfSango.Handlers
 {
     public class SyncPlayerAccountHandler : BaseHandler

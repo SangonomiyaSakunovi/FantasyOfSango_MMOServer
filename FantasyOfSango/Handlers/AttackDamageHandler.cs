@@ -7,6 +7,9 @@ using FantasyOfSango.Systems;
 using Photon.SocketServer;
 using System.Collections.Generic;
 
+//Developer : SangonomiyaSakunovi
+//Discription:
+
 namespace FantasyOfSango.Handlers
 {
     public class AttackDamageHandler : BaseHandler
@@ -18,11 +21,11 @@ namespace FantasyOfSango.Handlers
         public override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters, ClientPeer peer)
         {
             string attackDamageJson = DictTools.GetStringValue(operationRequest.Parameters, (byte)ParameterCode.AttackDamage);
-            AttackDamage attackDamageCache = DeJsonString<AttackDamage>(attackDamageJson);
-            AttackResult attackResultCache = OnlineAttackSystem.Instance.GetAttackResult(attackDamageCache);
-            if (attackResultCache != null)
+            AttackDamage attackDamage = DeJsonString<AttackDamage>(attackDamageJson);
+            AttackResult attackResult = OnlineAttackSystem.Instance.GetAttackResult(attackDamage);
+            if (attackResult != null)
             {
-                string attackResultJson = SetJsonString(attackResultCache);
+                string attackResultJson = SetJsonString(attackResult);
                 SangoServer.Log.Info(attackResultJson);
                 Dictionary<byte, object> dict = new Dictionary<byte, object>();
                 dict.Add((byte)ParameterCode.AttackResult, attackResultJson);
@@ -39,7 +42,7 @@ namespace FantasyOfSango.Handlers
                     onlinePeer.SendEvent(eventData, sendParameters);
                 }
             }
-            OnlineAttackCache.Instance.AddOnlineAttackDamageCache(attackDamageCache);
+            OnlineAttackCache.Instance.AddOnlineAttackDamageCache(attackDamage);
         }
     }
 }

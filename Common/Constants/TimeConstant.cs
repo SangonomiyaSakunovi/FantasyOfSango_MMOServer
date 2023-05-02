@@ -1,4 +1,6 @@
-﻿
+﻿//Developer : SangonomiyaSakunovi
+//Discription:
+
 namespace SangoCommon.Constants
 {
     public class TimeConstant

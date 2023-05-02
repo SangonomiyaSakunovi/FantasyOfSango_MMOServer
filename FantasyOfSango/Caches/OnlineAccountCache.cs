@@ -58,15 +58,15 @@ namespace FantasyOfSango.Caches
             }
         }
 
-        public TransformOnline GetAccountTransfromCache(string account)
+        public TransformOnline GetAccountTransfrom(string account)
         {
             ClientPeer peer = DictTools.GetDictValue<string, ClientPeer>(OnlineAccountDict, account);
-            TransformOnline transformCache = null;
+            TransformOnline transform = null;
             if (peer != null)
             {
-                transformCache = DictTools.GetDictValue<ClientPeer, TransformOnline>(OnlinePlayerTransformDict, peer);
+                transform = DictTools.GetDictValue<ClientPeer, TransformOnline>(OnlinePlayerTransformDict, peer);
             }
-            return transformCache;
+            return transform;
         }
 
         public void InitOnlineAccountAOIInfo(string account, SceneCode sceneCode, float x, float z)
@@ -139,16 +139,16 @@ namespace FantasyOfSango.Caches
             }
         }
 
-        public void AddOnlineAccount(ClientPeer clientPeer, string account, AvaterInfo playerCache)
+        public void AddOnlineAccount(ClientPeer clientPeer, string account, AvaterInfo avaterInfo)
         {
             lock (clientPeer)
             {
-                clientPeer.SetPlayerCache(playerCache);
+                clientPeer.SetPlayerCache(avaterInfo);
                 OnlineAccountDict.Add(account, clientPeer);
             }
         }
 
-        public AvaterInfo GetOnlinePlayerCache(string account)
+        public AvaterInfo GetOnlineAvaterInfo(string account)
         {
             lock (account)
             {
@@ -227,32 +227,32 @@ namespace FantasyOfSango.Caches
             return onlinePeerList;
         }
 
-        public void SetOnlinePlayerTransform(ClientPeer clientPeer, TransformOnline playerTransformCache)
+        public void SetOnlinePlayerTransform(ClientPeer clientPeer, TransformOnline playerTransform)
         {
             lock (clientPeer)
             {
                 if (OnlinePlayerTransformDict.ContainsKey(clientPeer))
                 {
-                    OnlinePlayerTransformDict[clientPeer] = playerTransformCache;
+                    OnlinePlayerTransformDict[clientPeer] = playerTransform;
                 }
                 else
                 {
-                    OnlinePlayerTransformDict.Add(clientPeer, playerTransformCache);
+                    OnlinePlayerTransformDict.Add(clientPeer, playerTransform);
                 }
             }
         }
 
-        public void UpdateOnlinePlayerCache(string attackerAccount, AvaterInfo attackerPlayerCache, string damagerAccount, AvaterInfo damagerPlayerCache)
+        public void UpdateOnlineAvaterInfo(string attackerAccount, AvaterInfo attackerAvaterInfo, string damagerAccount, AvaterInfo damagerAvaterInfo)
         {
             lock (attackerAccount)
             {
                 if (OnlineAccountDict.ContainsKey(attackerAccount))
                 {
-                    OnlineAccountDict[attackerAccount].SetPlayerCache(attackerPlayerCache);
+                    OnlineAccountDict[attackerAccount].SetPlayerCache(attackerAvaterInfo);
                 }
                 if (OnlineAccountDict.ContainsKey(damagerAccount))
                 {
-                    OnlineAccountDict[damagerAccount].SetPlayerCache(damagerPlayerCache);
+                    OnlineAccountDict[damagerAccount].SetPlayerCache(damagerAvaterInfo);
                 }
             }
         }
@@ -262,7 +262,7 @@ namespace FantasyOfSango.Caches
             lock (account)
             {
                 int index = 0;
-                List<AvaterAttributeInfo> tempAttributeInfoList = GetOnlinePlayerCache(account).AttributeInfoList;
+                List<AvaterAttributeInfo> tempAttributeInfoList = GetOnlineAvaterInfo(account).AttributeInfoList;
                 for (int i = 0; i < tempAttributeInfoList.Count; i++)
                 {
                     if (tempAttributeInfoList[i].Avater == avater)

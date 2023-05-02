@@ -3,6 +3,9 @@ using FantasyOfSango.Caches;
 using SangoCommon.Classs;
 using SangoCommon.Enums;
 
+//Developer : SangonomiyaSakunovi
+//Discription:
+
 namespace FantasyOfSango.Systems
 {
     public class OnlineAttackSystem : BaseSystem
@@ -17,78 +20,77 @@ namespace FantasyOfSango.Systems
             Instance = this;
         }
 
-        public AttackResult GetAttackResult(AttackDamage attackDamageCache)
+        public AttackResult GetAttackResult(AttackDamage attackDamage)
         {
-            AttackResult attackResultCache;
-            if (attackDamageCache.SkillCode == SkillCode.Attack)
+            AttackResult attackResult;
+            if (attackDamage.SkillCode == SkillCode.Attack)
             {
-                attackResultCache = SetAttackDamage(attackDamageCache);
+                attackResult = SetAttackDamage(attackDamage);
             }
-            else if (attackDamageCache.SkillCode == SkillCode.ElementAttack)
+            else if (attackDamage.SkillCode == SkillCode.ElementAttack)
             {
-                attackResultCache = SetElementAttackDamage(attackDamageCache);
+                attackResult = SetElementAttackDamage(attackDamage);
             }
-            else if (attackDamageCache.SkillCode == SkillCode.ElementBurst)
+            else if (attackDamage.SkillCode == SkillCode.ElementBurst)
             {
-                attackResultCache = SetElementBurstDamage(attackDamageCache);
+                attackResult = SetElementBurstDamage(attackDamage);
             }
             else
             {
-                attackResultCache = null;
+                attackResult = null;
             }
-            return attackResultCache;
+            return attackResult;
         }
 
-        private AttackResult SetAttackDamage(AttackDamage attackDamageCache)
+        private AttackResult SetAttackDamage(AttackDamage attackDamage)
         {
-            AvaterInfo attackerPlayerCache = OnlineAccountCache.Instance.GetOnlinePlayerCache(attackDamageCache.AttackerAccount);
-            AvaterInfo damagerPlayerCache = OnlineAccountCache.Instance.GetOnlinePlayerCache(attackDamageCache.DamagerAccount);
-            int attackerIndex = OnlineAccountCache.Instance.GetOnlineAvaterIndex(attackDamageCache.AttackerAccount);
-            int damagerIndex = OnlineAccountCache.Instance.GetOnlineAvaterIndex(attackDamageCache.DamagerAccount);
-            int attackerAttack = attackerPlayerCache.AttributeInfoList[attackerIndex].Attack;
-            int damagerDefence = damagerPlayerCache.AttributeInfoList[damagerIndex].Defence;
-            int attackDamage = attackerAttack - damagerDefence;
-            damagerPlayerCache.AttributeInfoList[damagerIndex].HP -= attackDamage;
-            AttackResult attackResultCache = new AttackResult
+            AvaterInfo attackerAvaterInfo = OnlineAccountCache.Instance.GetOnlineAvaterInfo(attackDamage.AttackerAccount);
+            AvaterInfo damagerAvaterInfo = OnlineAccountCache.Instance.GetOnlineAvaterInfo(attackDamage.DamagerAccount);
+            int attackerIndex = OnlineAccountCache.Instance.GetOnlineAvaterIndex(attackDamage.AttackerAccount);
+            int damagerIndex = OnlineAccountCache.Instance.GetOnlineAvaterIndex(attackDamage.DamagerAccount);
+            int attackerAttack = attackerAvaterInfo.AttributeInfoList[attackerIndex].Attack;
+            int damagerDefence = damagerAvaterInfo.AttributeInfoList[damagerIndex].Defence;
+            int attackDamageNum = attackerAttack - damagerDefence;
+            damagerAvaterInfo.AttributeInfoList[damagerIndex].HP -= attackDamageNum;
+            AttackResult attackResult = new AttackResult
             {
-                AttackerAccount = attackDamageCache.AttackerAccount,
-                DamagerAccount = attackDamageCache.DamagerAccount,
-                DamageNumber = attackDamage,
-                AttackerPlayerCache = attackerPlayerCache,
-                DamagerPlayerCache = damagerPlayerCache
+                AttackerAccount = attackDamage.AttackerAccount,
+                DamagerAccount = attackDamage.DamagerAccount,
+                DamageNumber = attackDamageNum,
+                AttackerAvaterInfo = attackerAvaterInfo,
+                DamagerAvaterInfo = damagerAvaterInfo
             };
-            OnlineAccountCache.Instance.UpdateOnlinePlayerCache(attackDamageCache.AttackerAccount, attackerPlayerCache, attackDamageCache.DamagerAccount, damagerPlayerCache);
-            return attackResultCache;
+            OnlineAccountCache.Instance.UpdateOnlineAvaterInfo(attackDamage.AttackerAccount, attackerAvaterInfo, attackDamage.DamagerAccount, damagerAvaterInfo);
+            return attackResult;
         }
 
-        private AttackResult SetElementAttackDamage(AttackDamage attackDamageCache)
+        private AttackResult SetElementAttackDamage(AttackDamage attackDamage)
         {
-            AvaterInfo attackerPlayerCache = OnlineAccountCache.Instance.GetOnlinePlayerCache(attackDamageCache.AttackerAccount);
-            AvaterInfo damagerPlayerCache = OnlineAccountCache.Instance.GetOnlinePlayerCache(attackDamageCache.DamagerAccount);
-            int attackerIndex = OnlineAccountCache.Instance.GetOnlineAvaterIndex(attackDamageCache.AttackerAccount);
-            int damagerIndex = OnlineAccountCache.Instance.GetOnlineAvaterIndex(attackDamageCache.DamagerAccount);
+            AvaterInfo attackerAvaterInfo = OnlineAccountCache.Instance.GetOnlineAvaterInfo(attackDamage.AttackerAccount);
+            AvaterInfo damagerAvaterInfo = OnlineAccountCache.Instance.GetOnlineAvaterInfo(attackDamage.DamagerAccount);
+            int attackerIndex = OnlineAccountCache.Instance.GetOnlineAvaterIndex(attackDamage.AttackerAccount);
+            int damagerIndex = OnlineAccountCache.Instance.GetOnlineAvaterIndex(attackDamage.DamagerAccount);
             //Exam if that damageRequest from Kokomi, she can give a healer
-            if (attackerPlayerCache.AttributeInfoList[attackerIndex].Avater == AvaterCode.SangonomiyaKokomi)
+            if (attackerAvaterInfo.AttributeInfoList[attackerIndex].Avater == AvaterCode.SangonomiyaKokomi)
             {
-                int kokomiHealer = attackerPlayerCache.AttributeInfoList[attackerIndex].Attack * 2;
-                damagerPlayerCache.AttributeInfoList[damagerIndex].HP += kokomiHealer;
+                int kokomiHealer = attackerAvaterInfo.AttributeInfoList[attackerIndex].Attack * 2;
+                damagerAvaterInfo.AttributeInfoList[damagerIndex].HP += kokomiHealer;
                 AttackResult attackResultCache = new AttackResult
                 {
-                    AttackerAccount = attackDamageCache.AttackerAccount,
-                    DamagerAccount = attackDamageCache.DamagerAccount,
+                    AttackerAccount = attackDamage.AttackerAccount,
+                    DamagerAccount = attackDamage.DamagerAccount,
                     DamageNumber = -kokomiHealer,
-                    AttackerPlayerCache = attackerPlayerCache,
-                    DamagerPlayerCache = damagerPlayerCache
+                    AttackerAvaterInfo = attackerAvaterInfo,
+                    DamagerAvaterInfo = damagerAvaterInfo
                 };
-                OnlineAccountCache.Instance.UpdateOnlinePlayerCache(attackDamageCache.AttackerAccount, attackerPlayerCache, attackDamageCache.DamagerAccount, damagerPlayerCache);
+                OnlineAccountCache.Instance.UpdateOnlineAvaterInfo(attackDamage.AttackerAccount, attackerAvaterInfo, attackDamage.DamagerAccount, damagerAvaterInfo);
                 return attackResultCache;
             }
             return null;
         }
 
-        private AttackResult SetElementBurstDamage(AttackDamage attackDamageCache)
+        private AttackResult SetElementBurstDamage(AttackDamage attackDamage)
         {
-
             return null;
         }
     }

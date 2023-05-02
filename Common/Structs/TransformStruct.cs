@@ -1,4 +1,7 @@
-﻿namespace SangoCommon.Structs
+﻿//Developer : SangonomiyaSakunovi
+//Discription:
+
+namespace SangoCommon.Structs
 {
     public struct Vector3Position
     {

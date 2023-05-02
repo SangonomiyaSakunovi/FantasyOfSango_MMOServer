@@ -1,4 +1,7 @@
-﻿namespace SangoCommon.Enums
+﻿//Developer : SangonomiyaSakunovi
+//Discription:
+
+namespace SangoCommon.Enums
 {
     public enum EventCode : byte
     {
@@ -27,10 +30,10 @@
         Account,
         Password,
         Nickname,
-        PlayerCache,
-        PlayerTransformCache,
+        AvaterInfo,
+        PlayerTransform,
         OnlineAccountList,
-        PlayerTransformCacheList,
+        PlayerTransformList,
         AttackCommand,
         AttackDamage,
         AttackResult,

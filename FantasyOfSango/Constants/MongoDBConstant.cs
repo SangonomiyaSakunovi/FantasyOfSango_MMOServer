@@ -1,4 +1,7 @@
-﻿namespace FantasyOfSango.Constants
+﻿//Developer : SangonomiyaSakunovi
+//Discription:
+
+namespace FantasyOfSango.Constants
 {
     public class MongoDBCollectionConstant
     {

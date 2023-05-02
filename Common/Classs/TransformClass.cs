@@ -1,5 +1,8 @@
 ﻿using SangoCommon.Structs;
 
+//Developer : SangonomiyaSakunovi
+//Discription:
+
 namespace SangoCommon.Classs
 {
     public class TransformOnline
