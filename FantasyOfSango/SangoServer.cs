@@ -11,6 +11,7 @@ using Photon.SocketServer;
 using SangoCommon.Enums;
 using System.Collections.Generic;
 using System.IO;
+
 //Developer : SangonomiyaSakunovi
 //Discription: The main cs of PhotonServer, give the Config
 
@@ -58,12 +59,12 @@ namespace FantasyOfSango
             //Use _log to show customize info
             Log.Info("Sango Server is Running");
 
+            //Init the Caches
+            InitCache();
             //Init the Services
             InitService();
             //Init the Handlers
-            InitHandler();
-            //Init the Caches
-            InitCache();
+            InitHandler();            
             //Init the Systems
             InitSystem();
             //Init the Threads
@@ -107,6 +108,8 @@ namespace FantasyOfSango
             onlineAccountCache.InitCache();
             OnlineAttackCache onlineAttackCache = new OnlineAttackCache();
             onlineAttackCache.InitCache();
+            OnlineNPCCache onlineNPCCache = new OnlineNPCCache();
+            onlineNPCCache.InitCache();
         }
 
         private void InitSystem()
@@ -115,6 +118,8 @@ namespace FantasyOfSango
             onlineAttackSystem.InitSystem();
             AOISystem aoiSystem = new AOISystem();
             aoiSystem.InitSystem();
+            NPCSystem npcSystem = new NPCSystem();
+            npcSystem.InitSystem();
         }
 
         public void InitService()

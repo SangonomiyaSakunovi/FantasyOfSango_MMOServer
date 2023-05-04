@@ -10,4 +10,9 @@ namespace SangoCommon.Enums
         Ayaka,
         Aether
     }
+
+    public enum NPCCode
+    {
+        Hilichurl_Island_A_01,
+    }
 }

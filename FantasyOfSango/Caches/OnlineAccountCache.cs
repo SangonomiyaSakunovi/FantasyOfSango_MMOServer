@@ -17,12 +17,20 @@ namespace FantasyOfSango.Caches
 
         private Dictionary<AOISceneGrid, List<string>> AOIAccountDict = new Dictionary<AOISceneGrid, List<string>>();
         private Dictionary<string, ClientPeer> OnlineAccountDict = new Dictionary<string, ClientPeer>();
-        private Dictionary<ClientPeer, TransformOnline> OnlinePlayerTransformDict = new Dictionary<ClientPeer, TransformOnline>();
+        //private Dictionary<ClientPeer, TransformOnline> OnlinePlayerTransformDict = new Dictionary<ClientPeer, TransformOnline>();
 
         public override void InitCache()
         {
             base.InitCache();
             Instance = this;
+        }
+
+        public List<string> GetCurrentAOIAccount(AOISceneGrid aoiSceneGrid, string account = "Test")
+        {
+            lock (account)
+            {
+                return DictTools.GetDictValue<AOISceneGrid, List<string>>(AOIAccountDict, aoiSceneGrid);
+            }
         }
 
         public List<string> GetSurroundAOIAccount(AOISceneGrid aoiSceneGrid, string account = "Test")
@@ -61,12 +69,13 @@ namespace FantasyOfSango.Caches
         public TransformOnline GetAccountTransfrom(string account)
         {
             ClientPeer peer = DictTools.GetDictValue<string, ClientPeer>(OnlineAccountDict, account);
-            TransformOnline transform = null;
-            if (peer != null)
-            {
-                transform = DictTools.GetDictValue<ClientPeer, TransformOnline>(OnlinePlayerTransformDict, peer);
-            }
-            return transform;
+            return peer.TransformOnline;
+            //TransformOnline transform = null;
+            //if (peer != null)
+            //{
+            //    transform = DictTools.GetDictValue<ClientPeer, TransformOnline>(OnlinePlayerTransformDict, peer);
+            //}
+            //return transform;
         }
 
         public void InitOnlineAccountAOIInfo(string account, SceneCode sceneCode, float x, float z)
@@ -152,7 +161,7 @@ namespace FantasyOfSango.Caches
         {
             lock (account)
             {
-                return DictTools.GetDictValue<string, ClientPeer>(OnlineAccountDict, account).PlayerCache;
+                return DictTools.GetDictValue<string, ClientPeer>(OnlineAccountDict, account).AvaterInfo;
             }
         }
 
@@ -164,8 +173,11 @@ namespace FantasyOfSango.Caches
                 {
                     AOIAccountDict[OnlineAccountDict[clientPeer.Account].AOISceneGrid].Remove(clientPeer.Account);
                 }
-                OnlineAccountDict.Remove(clientPeer.Account);
-                OnlinePlayerTransformDict.Remove(clientPeer);
+                if (OnlineAccountDict.ContainsKey(clientPeer.Account))
+                {
+                    OnlineAccountDict.Remove(clientPeer.Account);
+                }               
+                //OnlinePlayerTransformDict.Remove(clientPeer);
             }
         }
 
@@ -198,7 +210,7 @@ namespace FantasyOfSango.Caches
             return onlineAccountList;
         }
 
-        public List<ClientPeer> GetOnlinePlayerPeer()
+        public List<ClientPeer> GetOnlinePlayerPeerList()
         {
             List<ClientPeer> onlinePeerList = new List<ClientPeer>();
             foreach (var item in OnlineAccountDict.Values)
@@ -211,7 +223,7 @@ namespace FantasyOfSango.Caches
             return onlinePeerList;
         }
 
-        public List<ClientPeer> GetOtherOnlinePlayerPeer(ClientPeer localPeer)
+        public List<ClientPeer> GetOtherOnlinePlayerPeerList(ClientPeer localPeer)
         {
             List<ClientPeer> onlinePeerList = new List<ClientPeer>();
             foreach (var item in OnlineAccountDict.Values)
@@ -227,18 +239,27 @@ namespace FantasyOfSango.Caches
             return onlinePeerList;
         }
 
+        public ClientPeer GetOnlinePlayerPeer(string account)
+        {
+            lock (account)
+            {
+                return DictTools.GetDictValue<string, ClientPeer>(OnlineAccountDict, account);
+            }
+        }
+
         public void SetOnlinePlayerTransform(ClientPeer clientPeer, TransformOnline playerTransform)
         {
             lock (clientPeer)
             {
-                if (OnlinePlayerTransformDict.ContainsKey(clientPeer))
-                {
-                    OnlinePlayerTransformDict[clientPeer] = playerTransform;
-                }
-                else
-                {
-                    OnlinePlayerTransformDict.Add(clientPeer, playerTransform);
-                }
+                clientPeer.SetTransformOnline(playerTransform);
+                //if (OnlinePlayerTransformDict.ContainsKey(clientPeer))
+                //{
+                //    OnlinePlayerTransformDict[clientPeer] = playerTransform;
+                //}
+                //else
+                //{
+                //    OnlinePlayerTransformDict.Add(clientPeer, playerTransform);
+                //}
             }
         }
 

@@ -180,7 +180,11 @@
     <Compile Include="Bases\BaseThreads.cs" />
     <Compile Include="Caches\OnlineAccountCache.cs" />
     <Compile Include="Caches\OnlineAttackCache.cs" />
+    <Compile Include="Caches\OnlineNPCCache.cs" />
     <Compile Include="Constants\MongoDBConstant.cs" />
+    <Compile Include="FSMs\NPCState.cs" />
+    <Compile Include="FSMs\FSMState.cs" />
+    <Compile Include="FSMs\FSMSystem.cs" />
     <Compile Include="Handlers\AttackCommandHandler.cs" />
     <Compile Include="Handlers\AttackDamageHandler.cs" />
     <Compile Include="Handlers\ChooseAvaterHandler.cs" />
@@ -195,7 +199,7 @@
     <Compile Include="SangoServer.cs" />
     <Compile Include="Services\MongoDBService.cs" />
     <Compile Include="Systems\AOISystem.cs" />
-    <Compile Include="Systems\AStarSystem.cs" />
+    <Compile Include="Systems\NPCSystem.cs" />
     <Compile Include="Systems\OnlineAttackSystem.cs" />
     <Compile Include="Threads\SyncPlayerTransformThreads.cs" />
   </ItemGroup>

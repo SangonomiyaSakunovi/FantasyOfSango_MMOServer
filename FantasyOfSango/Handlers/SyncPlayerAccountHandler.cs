@@ -27,7 +27,7 @@ namespace FantasyOfSango.Handlers
 
             Dictionary<byte, object> dict1 = new Dictionary<byte, object>();
             dict1.Add((byte)ParameterCode.Account, peer.Account);
-            List<ClientPeer> onlinePeerList = OnlineAccountCache.Instance.GetOtherOnlinePlayerPeer(peer);
+            List<ClientPeer> onlinePeerList = OnlineAccountCache.Instance.GetOtherOnlinePlayerPeerList(peer);
             foreach (ClientPeer onlinePeer in onlinePeerList)
             {
                 EventData eventData = new EventData((byte)EventCode.NewAccountJoin);

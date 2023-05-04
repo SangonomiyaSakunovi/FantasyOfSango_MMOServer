@@ -20,7 +20,7 @@ namespace SangoCommon.Enums
 
     public enum ElementTypeCode
     {
-        Default,
+        Null,
         Hydro,
         Pyro,
         Cryo,

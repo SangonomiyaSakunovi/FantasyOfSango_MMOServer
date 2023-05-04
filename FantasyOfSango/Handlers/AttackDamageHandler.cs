@@ -34,7 +34,7 @@ namespace FantasyOfSango.Handlers
                 response.SetParameters(dict);
                 peer.SendOperationResponse(response, sendParameters);
 
-                List<ClientPeer> onlinePeerList = OnlineAccountCache.Instance.GetOtherOnlinePlayerPeer(peer);
+                List<ClientPeer> onlinePeerList = OnlineAccountCache.Instance.GetOtherOnlinePlayerPeerList(peer);
                 foreach (ClientPeer onlinePeer in onlinePeerList)
                 {
                     EventData eventData = new EventData((byte)EventCode.AttackResult);

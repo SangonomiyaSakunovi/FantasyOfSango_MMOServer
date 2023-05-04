@@ -19,4 +19,15 @@ namespace SangoCommon.Classs
         public ElementTypeCode ElementType { get; set; }
         public int ElementGauge { get; set; }
     }
+
+    [Serializable]
+    public class NPCAttributeInfo
+    {
+        public int HP { get; set; }
+        public int HPFull { get; set;}
+        public int Attack { get; set; }
+        public int Defence { get; set; }
+        public ElementTypeCode ElementType { get; set; }
+        public int ElementGauge { get; set; }
+    }
 }

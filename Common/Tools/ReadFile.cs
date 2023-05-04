@@ -19,7 +19,7 @@ namespace SangoCommon.Tools
             List<List<string>> excelInfoList = new List<List<string>>();
             using (var package = new ExcelPackage(new FileInfo(excelLocation)))
             {
-                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                 using (ExcelWorksheet worksheet = package.Workbook.Worksheets[0])
                 {
                     int rowCount = worksheet.Dimension.Rows;
@@ -47,7 +47,7 @@ namespace SangoCommon.Tools
             List<List<string>> excelInfoList = new List<List<string>>();
             using (var package = new ExcelPackage(new FileInfo(excelLocation)))
             {
-                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                 using (ExcelWorksheet worksheet = package.Workbook.Worksheets[0])
                 {
                     int rowCount = worksheet.Dimension.Rows;

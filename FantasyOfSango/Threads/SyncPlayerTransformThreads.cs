@@ -39,7 +39,7 @@ namespace FantasyOfSango.Threads
 
         private void SendAOITransform()
         {
-            List<ClientPeer> onlinePeerList = OnlineAccountCache.Instance.GetOnlinePlayerPeer();
+            List<ClientPeer> onlinePeerList = OnlineAccountCache.Instance.GetOnlinePlayerPeerList();
             for (int i = 0; i < onlinePeerList.Count; i++)
             {
                 ClientPeer peer = onlinePeerList[i];

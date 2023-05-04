@@ -17,7 +17,8 @@ namespace FantasyOfSango
         public string Account { get; private set; }
         public AOISceneGrid AOISceneGrid { get; private set; }
         public int OnlinePlayerAvaterIndex { get; private set; }
-        public AvaterInfo PlayerCache { get; private set; }
+        public AvaterInfo AvaterInfo { get; private set; }
+        public TransformOnline TransformOnline { get; private set; }
 
         //Call father class to intiate
         public ClientPeer(InitRequest initRequest) : base(initRequest)
@@ -58,13 +59,19 @@ namespace FantasyOfSango
             AOISceneGrid = aoiSceneGrid;
         }
 
-        public void SetPlayerCache(AvaterInfo playerCache)
+        public void SetPlayerCache(AvaterInfo avaterInfo)
         {
-            PlayerCache = playerCache;
+            AvaterInfo = avaterInfo;
         }
+
         public void SetOnlinePlayerAvaterIndex(int index)
         {
             OnlinePlayerAvaterIndex = index;
+        }
+
+        public void SetTransformOnline(TransformOnline transformOnline)
+        {
+            TransformOnline = transformOnline;
         }
     }
 }
