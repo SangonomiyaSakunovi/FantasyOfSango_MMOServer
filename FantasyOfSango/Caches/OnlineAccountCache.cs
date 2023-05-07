@@ -17,7 +17,6 @@ namespace FantasyOfSango.Caches
 
         private Dictionary<AOISceneGrid, List<string>> AOIAccountDict = new Dictionary<AOISceneGrid, List<string>>();
         private Dictionary<string, ClientPeer> OnlineAccountDict = new Dictionary<string, ClientPeer>();
-        //private Dictionary<ClientPeer, TransformOnline> OnlinePlayerTransformDict = new Dictionary<ClientPeer, TransformOnline>();
 
         public override void InitCache()
         {
@@ -39,25 +38,16 @@ namespace FantasyOfSango.Caches
             {
                 List<AOISceneGrid> surroundAOIGridList = AOISystem.Instance.GetSurroundAOIGrid(aoiSceneGrid);
                 List<string> aoiAccountList = new List<string>();
-                List<string> tempList1 = DictTools.GetDictValue<AOISceneGrid, List<string>>(AOIAccountDict, aoiSceneGrid);
-
-                if (tempList1 != null)
+                for (int i = 0; i < surroundAOIGridList.Count; i++)
                 {
-                    for (int i = 0; i < tempList1.Count; i++)
+                    if (AOIAccountDict.ContainsKey(surroundAOIGridList[i]))
                     {
-                        aoiAccountList.Add(tempList1[i]);
-                    }
-                }
-                for (int j = 0; j < surroundAOIGridList.Count; j++)
-                {
-                    if (AOIAccountDict.ContainsKey(surroundAOIGridList[j]))
-                    {
-                        List<string> tempList2 = DictTools.GetDictValue<AOISceneGrid, List<string>>(AOIAccountDict, surroundAOIGridList[j]);
-                        if (tempList2 != null)
+                        List<string> tempList = DictTools.GetDictValue<AOISceneGrid, List<string>>(AOIAccountDict, surroundAOIGridList[i]);
+                        if (tempList != null)
                         {
-                            for (int k = 0; k < tempList2.Count; k++)
+                            for (int j = 0; j < tempList.Count; j++)
                             {
-                                aoiAccountList.Add(tempList2[k]);
+                                aoiAccountList.Add(tempList[j]);
                             }
                         }
                     }
@@ -69,13 +59,7 @@ namespace FantasyOfSango.Caches
         public TransformOnline GetAccountTransfrom(string account)
         {
             ClientPeer peer = DictTools.GetDictValue<string, ClientPeer>(OnlineAccountDict, account);
-            return peer.TransformOnline;
-            //TransformOnline transform = null;
-            //if (peer != null)
-            //{
-            //    transform = DictTools.GetDictValue<ClientPeer, TransformOnline>(OnlinePlayerTransformDict, peer);
-            //}
-            //return transform;
+            return peer.CurrentTransformOnline;            
         }
 
         public void InitOnlineAccountAOIInfo(string account, SceneCode sceneCode, float x, float z)
@@ -244,22 +228,6 @@ namespace FantasyOfSango.Caches
             lock (account)
             {
                 return DictTools.GetDictValue<string, ClientPeer>(OnlineAccountDict, account);
-            }
-        }
-
-        public void SetOnlinePlayerTransform(ClientPeer clientPeer, TransformOnline playerTransform)
-        {
-            lock (clientPeer)
-            {
-                clientPeer.SetTransformOnline(playerTransform);
-                //if (OnlinePlayerTransformDict.ContainsKey(clientPeer))
-                //{
-                //    OnlinePlayerTransformDict[clientPeer] = playerTransform;
-                //}
-                //else
-                //{
-                //    OnlinePlayerTransformDict.Add(clientPeer, playerTransform);
-                //}
             }
         }
 

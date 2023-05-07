@@ -120,6 +120,8 @@ namespace FantasyOfSango
             aoiSystem.InitSystem();
             NPCSystem npcSystem = new NPCSystem();
             npcSystem.InitSystem();
+            PredictSystem predictSystem = new PredictSystem();
+            predictSystem.InitSystem();
         }
 
         public void InitService()

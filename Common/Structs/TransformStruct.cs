@@ -47,6 +47,12 @@ namespace SangoCommon.Structs
             return new Vector3Position(value.X / num, value.Y / num, value.Z / num);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Vector3Position EdgePosition(Vector3Position edge, Vector3Position mid)
+        {
+            return new Vector3Position(2 * mid.X - edge.X, 2 * mid.Y - edge.Y, 2 * mid.Z - edge.Z);
+        }
+
         public Vector3Position(float x, float y, float z)
         {
             X = x; Y = y; Z = z;

@@ -1,7 +1,7 @@
 ﻿using FantasyOfSango.Bases;
 using SangoCommon.Enums;
-using System.Collections.Generic;
 using SangoCommon.Structs;
+using System.Collections.Generic;
 
 //Developer : SangonomiyaSakunovi
 //Discription:
@@ -44,6 +44,7 @@ namespace FantasyOfSango.Systems
             int centerGridZ = aoiSceneGrid.GridZ;
             List<AOISceneGrid> aoiSceneGridList = new List<AOISceneGrid>(8)
             {
+                new AOISceneGrid(sceneCode, centerGridX, centerGridZ),
                 new AOISceneGrid(sceneCode, centerGridX, centerGridZ + 1),
                 new AOISceneGrid(sceneCode, centerGridX, centerGridZ - 1),
                 new AOISceneGrid(sceneCode, centerGridX - 1, centerGridZ),

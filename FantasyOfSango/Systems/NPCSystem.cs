@@ -64,7 +64,7 @@ namespace FantasyOfSango.Systems
             for (int i = 0; i < accountString.Count; i++)
             {
                 ClientPeer tempPeer = OnlineAccountCache.Instance.GetOnlinePlayerPeer(accountString[i]);
-                float tempDis = Vector3Position.Distance(npcPos, tempPeer.TransformOnline.Vector3Position);
+                float tempDis = Vector3Position.Distance(npcPos, tempPeer.CurrentTransformOnline.Vector3Position);
                 if (tempDis < patrolToChaseDis)
                 {
                     return tempPeer;
@@ -76,7 +76,7 @@ namespace FantasyOfSango.Systems
         public bool IsLostOnlineClientPeerTarget(NPCCode npcCode, ClientPeer targetPeer, float chaseToPatrolDis)
         {
             Vector3Position npcPos = OnlineNPCCache.Instance.GetNPCGameObject(npcCode).Vector3Position;
-            float tempDis = Vector3Position.Distance(npcPos, targetPeer.TransformOnline.Vector3Position);
+            float tempDis = Vector3Position.Distance(npcPos, targetPeer.CurrentTransformOnline.Vector3Position);
             if (tempDis > chaseToPatrolDis)
             {
                 return true;
@@ -87,7 +87,7 @@ namespace FantasyOfSango.Systems
         public bool IsApproachOnlineClientPeerTarget(NPCCode npcCode, ClientPeer targetPeer, float chaseToAttackDis)
         {
             Vector3Position npcPos = OnlineNPCCache.Instance.GetNPCGameObject(npcCode).Vector3Position;
-            float tempDis = Vector3Position.Distance(npcPos, targetPeer.TransformOnline.Vector3Position);
+            float tempDis = Vector3Position.Distance(npcPos, targetPeer.CurrentTransformOnline.Vector3Position);
             if (tempDis < chaseToAttackDis)
             {
                 return true;
@@ -98,7 +98,7 @@ namespace FantasyOfSango.Systems
         public bool IsAwayOnlienClientPeerTarget(NPCCode npcCode, ClientPeer targetPeer, float attackToChaseDis)
         {
             Vector3Position npcPos = OnlineNPCCache.Instance.GetNPCGameObject(npcCode).Vector3Position;
-            float tempDis = Vector3Position.Distance(npcPos, targetPeer.TransformOnline.Vector3Position);
+            float tempDis = Vector3Position.Distance(npcPos, targetPeer.CurrentTransformOnline.Vector3Position);
             if (tempDis > attackToChaseDis)
             {
                 return true;

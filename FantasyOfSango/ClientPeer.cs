@@ -6,6 +6,7 @@ using SangoCommon.Classs;
 using SangoCommon.Enums;
 using SangoCommon.Tools;
 using SangoCommon.Structs;
+using System;
 
 //Developer : SangonomiyaSakunovi
 //Discription: ClientPeer behaviours should define here
@@ -18,7 +19,10 @@ namespace FantasyOfSango
         public AOISceneGrid AOISceneGrid { get; private set; }
         public int OnlinePlayerAvaterIndex { get; private set; }
         public AvaterInfo AvaterInfo { get; private set; }
-        public TransformOnline TransformOnline { get; private set; }
+        
+        public int TransformClock { get; private set; }
+        public TransformOnline CurrentTransformOnline { get; private set; }
+        public TransformOnline LastTransformOnline { get; private set; }
 
         //Call father class to intiate
         public ClientPeer(InitRequest initRequest) : base(initRequest)
@@ -71,7 +75,13 @@ namespace FantasyOfSango
 
         public void SetTransformOnline(TransformOnline transformOnline)
         {
-            TransformOnline = transformOnline;
+            LastTransformOnline = CurrentTransformOnline;
+            CurrentTransformOnline = transformOnline;
+        }
+
+        public void SetTransformClock(int clock)
+        {
+            TransformClock = clock;
         }
     }
 }

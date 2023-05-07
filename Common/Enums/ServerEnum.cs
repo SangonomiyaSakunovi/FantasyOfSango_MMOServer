@@ -37,7 +37,9 @@ namespace SangoCommon.Enums
         AttackCommand,
         AttackDamage,
         AttackResult,
-        ChooseAvater
+        ChooseAvater,
+        SyncPlayerTransformResult,
+        PredictPlayerTransform
     }
 
     public enum ReturnCode : short
