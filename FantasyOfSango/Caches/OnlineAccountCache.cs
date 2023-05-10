@@ -161,7 +161,6 @@ namespace FantasyOfSango.Caches
                 {
                     OnlineAccountDict.Remove(clientPeer.Account);
                 }               
-                //OnlinePlayerTransformDict.Remove(clientPeer);
             }
         }
 

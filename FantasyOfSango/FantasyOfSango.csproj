@@ -201,6 +201,7 @@
     <Compile Include="Systems\AOISystem.cs" />
     <Compile Include="Systems\NPCSystem.cs" />
     <Compile Include="Systems\OnlineAttackSystem.cs" />
+    <Compile Include="Systems\PredictSystem.cs" />
     <Compile Include="Threads\SyncPlayerTransformThreads.cs" />
   </ItemGroup>
   <ItemGroup>

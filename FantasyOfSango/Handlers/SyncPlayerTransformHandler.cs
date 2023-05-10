@@ -23,7 +23,7 @@ namespace FantasyOfSango.Handlers
             TransformOnline playerTransform = DeJsonString<TransformOnline>(playerTransformJson);
             OperationResponse response = new OperationResponse(operationRequest.OperationCode);
             Dictionary<byte, object> dict = new Dictionary<byte, object>();
-            if (peer.TransformClock <= 1)
+            if (peer.TransformClock < 2)
             {
                 peer.SetTransformOnline(playerTransform);
                 OnlineAccountCache.Instance.UpdateOnlineAccountAOIInfo(peer.Account, SceneCode.Island, playerTransform.Vector3Position.X, playerTransform.Vector3Position.Z);
@@ -31,9 +31,10 @@ namespace FantasyOfSango.Handlers
             }
             else
             {               
-                TransformOnline predictTrans = peer.CurrentTransformOnline;
+                TransformOnline predictTransform = peer.CurrentTransformOnline;
+                string predictTransformJson = SetJsonString(predictTransform);
                 dict.Add((byte)ParameterCode.SyncPlayerTransformResult, false);
-                dict.Add((byte)ParameterCode.PredictPlayerTransform, predictTrans);
+                dict.Add((byte)ParameterCode.PredictPlayerTransform, predictTransformJson);
             }
             peer.SetTransformClock(0);
             response.SetParameters(dict);

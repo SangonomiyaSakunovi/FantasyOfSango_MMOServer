@@ -52,6 +52,7 @@ namespace FantasyOfSango.Threads
                 ClientPeer peer = onlinePeerList[i];
                 if (peer.TransformClock == 0)
                 {
+                    if (peer.CurrentTransformOnline == null || peer.LastTransformOnline == null) continue;
                     if (Vector3Position.Distance(peer.CurrentTransformOnline.Vector3Position, peer.LastTransformOnline.Vector3Position) > ThreadsConstant.SyncPlayerTransformVector3PositionDistanceLimit)
                     {
                         SetAOIMovedAccountDict(peer);
