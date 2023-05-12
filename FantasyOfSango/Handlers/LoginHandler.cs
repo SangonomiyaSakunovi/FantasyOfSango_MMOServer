@@ -44,9 +44,14 @@ namespace FantasyOfSango.Handlers
                     {
                         string avaterCollectionName = MongoDBCollectionConstant.AvaterInfos;
                         string avaterObjectId = MongoDBIdConstant.AvaterInfo_ + account;
+                        string missionCollectionName = MongoDBCollectionConstant.MissionInfos;
+                        string missionObjectId = MongoDBIdConstant.MissionInfo_ + account;
                         AvaterInfo avaterInfo = MongoDBService.Instance.LookUpOneData<AvaterInfo>(avaterCollectionName, avaterObjectId);
+                        MissionInfo missionInfo = MongoDBService.Instance.LookUpOneData<MissionInfo>(missionCollectionName, missionObjectId);
                         SangoServer.Instance.clientPeer.SetAccount(account);
-                        OnlineAccountCache.Instance.AddOnlineAccount(SangoServer.Instance.clientPeer, account, avaterInfo);
+                        SangoServer.Instance.clientPeer.SetAvaterInfo(avaterInfo);
+                        SangoServer.Instance.clientPeer.SetMissionInfo(missionInfo);
+                        OnlineAccountCache.Instance.AddOnlineAccount(SangoServer.Instance.clientPeer, account);
                         OnlineAccountCache.Instance.SetOnlineAvaterIndex(account, AvaterCode.SangonomiyaKokomi);
                     }
                     response.ReturnCode = (short)ReturnCode.Success;

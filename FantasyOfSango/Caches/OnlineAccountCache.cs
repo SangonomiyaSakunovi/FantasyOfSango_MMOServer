@@ -132,11 +132,10 @@ namespace FantasyOfSango.Caches
             }
         }
 
-        public void AddOnlineAccount(ClientPeer clientPeer, string account, AvaterInfo avaterInfo)
+        public void AddOnlineAccount(ClientPeer clientPeer, string account)
         {
             lock (clientPeer)
-            {
-                clientPeer.SetPlayerCache(avaterInfo);
+            {                
                 OnlineAccountDict.Add(account, clientPeer);
             }
         }
@@ -146,6 +145,14 @@ namespace FantasyOfSango.Caches
             lock (account)
             {
                 return DictTools.GetDictValue<string, ClientPeer>(OnlineAccountDict, account).AvaterInfo;
+            }
+        }
+
+        public MissionInfo GetOnlineMissionInfo(string account)
+        {
+            lock (account)
+            {
+                return DictTools.GetDictValue<string, ClientPeer>(OnlineAccountDict, account).MissionInfo;
             }
         }
 
@@ -236,11 +243,11 @@ namespace FantasyOfSango.Caches
             {
                 if (OnlineAccountDict.ContainsKey(attackerAccount))
                 {
-                    OnlineAccountDict[attackerAccount].SetPlayerCache(attackerAvaterInfo);
+                    OnlineAccountDict[attackerAccount].SetAvaterInfo(attackerAvaterInfo);
                 }
                 if (OnlineAccountDict.ContainsKey(damagerAccount))
                 {
-                    OnlineAccountDict[damagerAccount].SetPlayerCache(damagerAvaterInfo);
+                    OnlineAccountDict[damagerAccount].SetAvaterInfo(damagerAvaterInfo);
                 }
             }
         }

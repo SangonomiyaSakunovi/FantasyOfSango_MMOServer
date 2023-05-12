@@ -30,10 +30,11 @@ namespace FantasyOfSango.Handlers
             {
                 bool isAddUserInfo = AddUserInfo(account, password, nickname);
                 bool isInitAvaterInfo = InitAvaterInfo(account, nickname);
-                if (isAddUserInfo && isInitAvaterInfo)
+                bool isInitMissionInfo = InitMissionInfo(account);
+                if (isAddUserInfo && isInitAvaterInfo && isInitMissionInfo)
                 {
                     isRegistSuccess = true;
-                }                
+                }
             }
             OperationResponse response = new OperationResponse(operationRequest.OperationCode);
             if (isRegistSuccess)
@@ -70,6 +71,20 @@ namespace FantasyOfSango.Handlers
                 Nickname = nickname
             };
             return MongoDBService.Instance.AddOneData<UserInfo>(userInfo, collectionName);
+        }
+
+        private bool InitMissionInfo(string account)
+        {
+            string collectionName = MongoDBCollectionConstant.MissionInfos;
+            MissionInfo missionInfo = new MissionInfo
+            {
+                _id = MongoDBIdConstant.MissionInfo_ + account,
+                Account = account,
+                MainMissionInfoList = new List<string>() { "Island_Mission_Main_01_01" },
+                DailyMissionInfoList = new List<string>(),
+                OptionalMissionInfoList = new List<string>()
+            };
+            return MongoDBService.Instance.AddOneData<MissionInfo>(missionInfo, collectionName);
         }
 
         private bool InitAvaterInfo(string account, string nickname)

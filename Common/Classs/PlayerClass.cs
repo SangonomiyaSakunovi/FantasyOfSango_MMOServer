@@ -23,4 +23,14 @@ namespace SangoCommon.Classs
         public string Nickname { get; set; }
         public List<AvaterAttributeInfo> AttributeInfoList { get; set; }
     }
+
+    [Serializable]
+    public class MissionInfo
+    {
+        public string _id { get; set;}
+        public string Account { get; set; }
+        public List<string> MainMissionInfoList { get; set; }
+        public List<string> DailyMissionInfoList { get; set; }
+        public List<string> OptionalMissionInfoList { get; set; }
+    }
 }

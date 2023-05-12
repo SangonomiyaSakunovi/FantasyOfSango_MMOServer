@@ -31,6 +31,7 @@ namespace SangoCommon.Enums
         Password,
         Nickname,
         AvaterInfo,
+        MissionInfo,
         PlayerTransform,
         OnlineAccountList,
         PlayerTransformList,

@@ -19,6 +19,7 @@ namespace FantasyOfSango
         public AOISceneGrid AOISceneGrid { get; private set; }
         public int OnlinePlayerAvaterIndex { get; private set; }
         public AvaterInfo AvaterInfo { get; private set; }
+        public MissionInfo MissionInfo { get; private set; }
         
         public int TransformClock { get; private set; }
         public TransformOnline CurrentTransformOnline { get; private set; }
@@ -63,9 +64,14 @@ namespace FantasyOfSango
             AOISceneGrid = aoiSceneGrid;
         }
 
-        public void SetPlayerCache(AvaterInfo avaterInfo)
+        public void SetAvaterInfo(AvaterInfo avaterInfo)
         {
             AvaterInfo = avaterInfo;
+        }
+
+        public void SetMissionInfo(MissionInfo missionInfo)
+        {
+            MissionInfo = missionInfo;
         }
 
         public void SetOnlinePlayerAvaterIndex(int index)
