@@ -1,6 +1,7 @@
 ﻿using FantasyOfSango.Bases;
 using FantasyOfSango.Caches;
 using FantasyOfSango.FSMs;
+using SangoCommon.AI;
 using SangoCommon.Classs;
 using SangoCommon.Enums;
 using SangoCommon.Structs;
@@ -31,6 +32,7 @@ namespace FantasyOfSango.Systems
         {
             NPCGameObject testHilichurlGameObject = new NPCGameObject
             {
+                _id = "testHilichurl", //here can be any name, no logic related
                 NPCCode = NPCCode.Hilichurl_Island_A_01,
                 Vector3Position = new Vector3Position(-69.08f, 10.39f, 138.39f),
                 QuaternionRotation = new QuaternionRotation(0, 0, 0, 0),
@@ -45,6 +47,7 @@ namespace FantasyOfSango.Systems
                 },
                 AOISceneGrid = new AOISceneGrid(SceneCode.Island, (int)(-69.08f + 700) / 100, (int)(138.39f + 400) / 100)
             };
+            OnlineNPCCache.Instance.AddNPCAISystem<AIHilichurl>(NPCCode.Hilichurl_Island_A_01, new AIHilichurl(testHilichurlGameObject));
             OnlineNPCCache.Instance.AddNPCGameObject(NPCCode.Hilichurl_Island_A_01, testHilichurlGameObject);
             OnlineNPCCache.Instance.AddOrUpdateAOINPCGameObjectDict(NPCCode.Hilichurl_Island_A_01, testHilichurlGameObject.AOISceneGrid);
         }

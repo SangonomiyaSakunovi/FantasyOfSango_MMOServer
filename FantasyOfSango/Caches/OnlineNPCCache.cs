@@ -1,6 +1,7 @@
 ﻿using FantasyOfSango.Bases;
 using FantasyOfSango.FSMs;
 using FantasyOfSango.Systems;
+using SangoCommon.AI;
 using SangoCommon.Classs;
 using SangoCommon.Enums;
 using SangoCommon.Structs;
@@ -19,6 +20,7 @@ namespace FantasyOfSango.Caches
         private Dictionary<AOISceneGrid, List<NPCCode>> AOINPCGameObjectDict = new Dictionary<AOISceneGrid, List<NPCCode>>();
         private Dictionary<NPCCode, NPCGameObject> NPCGameObjectDict = new Dictionary<NPCCode, NPCGameObject>();
         private Dictionary<NPCCode, FSMSystem> NPCFSMSystemDict = new Dictionary<NPCCode, FSMSystem>();
+        private Dictionary<NPCCode, AIBase> NPCAISystemDict = new Dictionary<NPCCode, AIBase>();
 
         public override void InitCache()
         {
@@ -74,6 +76,17 @@ namespace FantasyOfSango.Caches
             }
         }
 
+        public void AddNPCAISystem<T>(NPCCode npcCode, AIBase ai) where T : AIBase
+        {
+            if (ai is T subAI)
+                NPCAISystemDict.Add(npcCode, subAI);
+        }
+
+        public AIBase GetNPCAI(NPCCode npcCode)
+        {
+            return DictTools.GetDictValue<NPCCode, AIBase>(NPCAISystemDict, npcCode);
+        }
+
         public void AddNPCGameObject(NPCCode npcCode, NPCGameObject npcGameObject)
         {
             NPCGameObjectDict.Add(npcCode, npcGameObject);
@@ -93,5 +106,7 @@ namespace FantasyOfSango.Caches
         {
             return DictTools.GetDictValue<NPCCode, FSMSystem>(NPCFSMSystemDict, npcCode);
         }
+
+        public IEnumerable<AIBase> GetNPCAIs() => NPCAISystemDict.Values;
     }
 }

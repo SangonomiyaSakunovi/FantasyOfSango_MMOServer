@@ -6,6 +6,7 @@ using FantasyOfSango.Caches;
 using FantasyOfSango.Systems;
 using Photon.SocketServer;
 using System.Collections.Generic;
+using ExitGames.Logging;
 
 //Developer : SangonomiyaSakunovi
 //Discription:
@@ -14,6 +15,7 @@ namespace FantasyOfSango.Handlers
 {
     public class AttackDamageHandler : BaseHandler
     {
+        public static ILogger Log => SangoServer.Log;
         public AttackDamageHandler()
         {
             OpCode = OperationCode.AttackDamage;
@@ -22,6 +24,9 @@ namespace FantasyOfSango.Handlers
         {
             string attackDamageJson = DictTools.GetStringValue(operationRequest.Parameters, (byte)ParameterCode.AttackDamage);
             AttackDamage attackDamage = DeJsonString<AttackDamage>(attackDamageJson);
+
+            Log.InfoFormat("AttackDamageHandler:: DamagerAccount:[{0}]", attackDamage.DamagerAccount);
+
             AttackResult attackResult = OnlineAttackSystem.Instance.GetAttackResult(attackDamage);
             if (attackResult != null)
             {

@@ -132,6 +132,7 @@ namespace FantasyOfSango
 
         #region Threads
         SyncPlayerTransformThreads syncPlayerTransformThreads = new SyncPlayerTransformThreads();
+        SyncEnemyLogicThreads syncEnemyLogicThreads = new SyncEnemyLogicThreads();
         #endregion
 
         private void InitThreads()

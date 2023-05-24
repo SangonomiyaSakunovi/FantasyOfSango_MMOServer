@@ -173,6 +173,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI\AIBase.cs" />
+    <Compile Include="AI\AIHilichurl.cs" />
     <Compile Include="Bases\BaseCache.cs" />
     <Compile Include="Bases\BaseHandler.cs" />
     <Compile Include="Bases\BaseService.cs" />
@@ -199,9 +201,11 @@
     <Compile Include="SangoServer.cs" />
     <Compile Include="Services\MongoDBService.cs" />
     <Compile Include="Systems\AOISystem.cs" />
+    <Compile Include="Systems\ElementSystem.cs" />
     <Compile Include="Systems\NPCSystem.cs" />
     <Compile Include="Systems\OnlineAttackSystem.cs" />
     <Compile Include="Systems\PredictSystem.cs" />
+    <Compile Include="Threads\SyncEnemyLogicThreads.cs" />
     <Compile Include="Threads\SyncPlayerTransformThreads.cs" />
   </ItemGroup>
   <ItemGroup>
