@@ -20,8 +20,8 @@ namespace FantasyOfSango.Handlers
         {
             AvaterCode avater = (AvaterCode)DictTools.GetDictValue<byte, object>(operationRequest.Parameters, (byte)ParameterCode.ChooseAvater);
             string account = DictTools.GetStringValue(operationRequest.Parameters, (byte)ParameterCode.Account);
-            OnlineAccountCache.Instance.SetOnlineAvaterIndex(account, avater);
-            List<ClientPeer> onlinePeerList = OnlineAccountCache.Instance.GetOtherOnlinePlayerPeerList(peer);
+            peer.SetCurrentAvaterIndexByAvaterCode(avater);
+            List<ClientPeer> onlinePeerList = OnlineAccountCache.Instance.GetSurroundAOIClientPeerList(peer);
             foreach (ClientPeer onlinePeer in onlinePeerList)
             {
                 EventData eventData = new EventData((byte)EventCode.ChooseAvater);

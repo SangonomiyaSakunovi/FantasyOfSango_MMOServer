@@ -23,6 +23,8 @@ namespace SangoCommon.Enums
         AttackCommand,
         AttackDamage,
         ChooseAvater,
+        ItemEnhance,
+        MissionUpdate
     }
 
     public enum ParameterCode : byte
@@ -32,6 +34,7 @@ namespace SangoCommon.Enums
         Nickname,
         AvaterInfo,
         MissionInfo,
+        ItemInfo,
         PlayerTransform,
         OnlineAccountList,
         PlayerTransformList,
@@ -40,7 +43,11 @@ namespace SangoCommon.Enums
         AttackResult,
         ChooseAvater,
         SyncPlayerTransformResult,
-        PredictPlayerTransform
+        PredictPlayerTransform,
+        ItemEnhanceReq,
+        ItemEnhanceRsp,
+        MissionUpdateReq,
+        MissionUpdateRsp
     }
 
     public enum ReturnCode : short

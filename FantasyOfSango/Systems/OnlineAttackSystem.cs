@@ -63,10 +63,12 @@ namespace FantasyOfSango.Systems
 
         private AttackResult SetAttackDamage(AttackDamage attackDamage)
         {
-            AvaterInfo attackerAvaterInfo = OnlineAccountCache.Instance.GetOnlineAvaterInfo(attackDamage.AttackerAccount);
-            AvaterInfo damagerAvaterInfo = OnlineAccountCache.Instance.GetOnlineAvaterInfo(attackDamage.DamagerAccount);
-            int attackerIndex = OnlineAccountCache.Instance.GetOnlineAvaterIndex(attackDamage.AttackerAccount);
-            int damagerIndex = OnlineAccountCache.Instance.GetOnlineAvaterIndex(attackDamage.DamagerAccount);
+            ClientPeer attackerPeer = OnlineAccountCache.Instance.GetOnlinePlayerClientPeerByAccount(attackDamage.AttackerAccount);
+            ClientPeer damagerPeer = OnlineAccountCache.Instance.GetOnlinePlayerClientPeerByAccount(attackDamage.DamagerAccount);
+            AvaterInfo attackerAvaterInfo = attackerPeer.AvaterInfo;
+            AvaterInfo damagerAvaterInfo = damagerPeer.AvaterInfo;
+            int attackerIndex = attackerPeer.CurrentAvaterIndex;
+            int damagerIndex = damagerPeer.CurrentAvaterIndex;
             int attackerAttack = attackerAvaterInfo.AttributeInfoList[attackerIndex].Attack;
             int damagerDefence = damagerAvaterInfo.AttributeInfoList[damagerIndex].Defence;
             int attackDamageNum = attackerAttack - damagerDefence;
@@ -79,16 +81,19 @@ namespace FantasyOfSango.Systems
                 AttackerAvaterInfo = attackerAvaterInfo,
                 DamagerAvaterInfo = damagerAvaterInfo
             };
-            OnlineAccountCache.Instance.UpdateOnlineAvaterInfo(attackDamage.AttackerAccount, attackerAvaterInfo, attackDamage.DamagerAccount, damagerAvaterInfo);
+            attackerPeer.SetAvaterInfo(attackerAvaterInfo);
+            damagerPeer.SetAvaterInfo(damagerAvaterInfo);
             return attackResult;
         }
 
         private AttackResult SetElementAttackDamage(AttackDamage attackDamage)
         {
-            AvaterInfo attackerAvaterInfo = OnlineAccountCache.Instance.GetOnlineAvaterInfo(attackDamage.AttackerAccount);
-            AvaterInfo damagerAvaterInfo = OnlineAccountCache.Instance.GetOnlineAvaterInfo(attackDamage.DamagerAccount);
-            int attackerIndex = OnlineAccountCache.Instance.GetOnlineAvaterIndex(attackDamage.AttackerAccount);
-            int damagerIndex = OnlineAccountCache.Instance.GetOnlineAvaterIndex(attackDamage.DamagerAccount);
+            ClientPeer attackerPeer = OnlineAccountCache.Instance.GetOnlinePlayerClientPeerByAccount(attackDamage.AttackerAccount);
+            ClientPeer damagerPeer = OnlineAccountCache.Instance.GetOnlinePlayerClientPeerByAccount(attackDamage.DamagerAccount);
+            AvaterInfo attackerAvaterInfo = attackerPeer.AvaterInfo;
+            AvaterInfo damagerAvaterInfo = damagerPeer.AvaterInfo;
+            int attackerIndex = attackerPeer.CurrentAvaterIndex;
+            int damagerIndex = damagerPeer.CurrentAvaterIndex;
             //Exam if that damageRequest from Kokomi, she can give a healer
             if (attackerAvaterInfo.AttributeInfoList[attackerIndex].Avater == AvaterCode.SangonomiyaKokomi)
             {
@@ -102,7 +107,8 @@ namespace FantasyOfSango.Systems
                     AttackerAvaterInfo = attackerAvaterInfo,
                     DamagerAvaterInfo = damagerAvaterInfo
                 };
-                OnlineAccountCache.Instance.UpdateOnlineAvaterInfo(attackDamage.AttackerAccount, attackerAvaterInfo, attackDamage.DamagerAccount, damagerAvaterInfo);
+                attackerPeer.SetAvaterInfo(attackerAvaterInfo);
+                damagerPeer.SetAvaterInfo(damagerAvaterInfo);
                 return attackResultCache;
             }
             return null;
@@ -115,8 +121,9 @@ namespace FantasyOfSango.Systems
 
         private AttackResult SetElementAttackDamagePVE(AttackDamage attackDamage)
         {
-            AvaterInfo attackerAvaterInfo = OnlineAccountCache.Instance.GetOnlineAvaterInfo(attackDamage.AttackerAccount);
-            int attackerIndex = OnlineAccountCache.Instance.GetOnlineAvaterIndex(attackDamage.AttackerAccount);
+            ClientPeer attakerPeer = OnlineAccountCache.Instance.GetOnlinePlayerClientPeerByAccount(attackDamage.AttackerAccount);
+            AvaterInfo attackerAvaterInfo = attakerPeer.AvaterInfo;
+            int attackerIndex = attakerPeer.CurrentAvaterIndex;
 
             NPCCode code = (NPCCode)Enum.Parse(typeof(NPCCode), attackDamage.DamagerAccount);
             AIBase ai = OnlineNPCCache.Instance.GetNPCAI(code);

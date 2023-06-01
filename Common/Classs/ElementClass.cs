@@ -1,11 +1,13 @@
 ﻿using SangoCommon.Constants;
 using SangoCommon.Enums;
+using System;
 
 //Developer : SangonomiyaSakunovi
 //Discription:
 
 namespace SangoCommon.Classs
 {
+    [Serializable]
     public class ElementApplication
     {
         public ElementTypeCode Type { get; set; }

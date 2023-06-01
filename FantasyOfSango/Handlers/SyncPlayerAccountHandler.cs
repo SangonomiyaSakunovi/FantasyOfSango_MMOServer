@@ -18,7 +18,7 @@ namespace FantasyOfSango.Handlers
         public override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters, ClientPeer peer)
         {
             Dictionary<byte, object> dict = new Dictionary<byte, object>();
-            List<string> onlineAccountList = OnlineAccountCache.Instance.GetOtherOnlinePlayerAccount(peer.Account);
+            List<string> onlineAccountList = OnlineAccountCache.Instance.GetSurroundAOIAccountList(peer);
             string onlineAccountJson = SetJsonString(onlineAccountList);
             dict.Add((byte)ParameterCode.OnlineAccountList, onlineAccountJson);
             OperationResponse response = new OperationResponse(operationRequest.OperationCode);
@@ -27,7 +27,7 @@ namespace FantasyOfSango.Handlers
 
             Dictionary<byte, object> dict1 = new Dictionary<byte, object>();
             dict1.Add((byte)ParameterCode.Account, peer.Account);
-            List<ClientPeer> onlinePeerList = OnlineAccountCache.Instance.GetOtherOnlinePlayerPeerList(peer);
+            List<ClientPeer> onlinePeerList = OnlineAccountCache.Instance.GetSurroundAOIClientPeerList(peer);
             foreach (ClientPeer onlinePeer in onlinePeerList)
             {
                 EventData eventData = new EventData((byte)EventCode.NewAccountJoin);

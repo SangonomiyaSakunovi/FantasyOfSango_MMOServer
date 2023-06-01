@@ -2,9 +2,9 @@
 using FantasyOfSango.Systems;
 using SangoCommon.Classs;
 using SangoCommon.Enums;
+using SangoCommon.Structs;
 using SangoCommon.Tools;
 using System.Collections.Generic;
-using SangoCommon.Structs;
 
 //Developer : SangonomiyaSakunovi
 //Discription:
@@ -24,19 +24,33 @@ namespace FantasyOfSango.Caches
             Instance = this;
         }
 
-        public List<string> GetCurrentAOIAccount(AOISceneGrid aoiSceneGrid, string account = "Test")
+        #region LookUpAOIAccount        
+        public List<ClientPeer> GetCurrentAOIClientPeerList(NPCGameObject npcGameObject, string locker = "locker")
         {
-            lock (account)
+            lock (locker)
             {
-                return DictTools.GetDictValue<AOISceneGrid, List<string>>(AOIAccountDict, aoiSceneGrid);
+                List<ClientPeer> aoiClientPeerList = new List<ClientPeer>();
+                if (AOIAccountDict.ContainsKey(npcGameObject.AOISceneGrid))
+                {
+                    List<string> tempList = DictTools.GetDictValue<AOISceneGrid, List<string>>(AOIAccountDict, npcGameObject.AOISceneGrid);
+                    if (tempList != null)
+                    {
+                        for (int j = 0; j < tempList.Count; j++)
+                        {
+                            ClientPeer tempPeer = GetOnlinePlayerClientPeerByAccount(tempList[j]);
+                            aoiClientPeerList.Add(tempPeer);
+                        }
+                    }
+                }
+                return aoiClientPeerList;
             }
         }
 
-        public List<string> GetSurroundAOIAccount(AOISceneGrid aoiSceneGrid, string account = "Test")
+        public List<string> GetSurroundAOIAccountList(ClientPeer clientPeer, string locker = "locker")
         {
-            lock (account)
+            lock (locker)
             {
-                List<AOISceneGrid> surroundAOIGridList = AOISystem.Instance.GetSurroundAOIGrid(aoiSceneGrid);
+                List<AOISceneGrid> surroundAOIGridList = AOISystem.Instance.GetSurroundAOIGrid(clientPeer.AOISceneGrid);
                 List<string> aoiAccountList = new List<string>();
                 for (int i = 0; i < surroundAOIGridList.Count; i++)
                 {
@@ -56,22 +70,33 @@ namespace FantasyOfSango.Caches
             }
         }
 
-        public TransformOnline GetAccountTransfrom(string account)
+        public List<ClientPeer> GetSurroundAOIClientPeerList(ClientPeer clientPeer, string locker = "locker")
         {
-            ClientPeer peer = DictTools.GetDictValue<string, ClientPeer>(OnlineAccountDict, account);
-            return peer.CurrentTransformOnline;            
-        }
-
-        public void InitOnlineAccountAOIInfo(string account, SceneCode sceneCode, float x, float z)
-        {
-            AOISceneGrid aoiSceneGrid = AOISystem.Instance.SetAOIGrid(sceneCode, x, z);
-            if (OnlineAccountDict.ContainsKey(account))
+            lock (locker)
             {
-                SetOnlineAccountAOISceneGrid(account, aoiSceneGrid);
-                AddOrUpdateAOIAccountDict(account, aoiSceneGrid);
+                List<AOISceneGrid> surroundAOIGridList = AOISystem.Instance.GetSurroundAOIGrid(clientPeer.AOISceneGrid);
+                List<ClientPeer> aoiClientPeerList = new List<ClientPeer>();
+                for (int i = 0; i < surroundAOIGridList.Count; i++)
+                {
+                    if (AOIAccountDict.ContainsKey(surroundAOIGridList[i]))
+                    {
+                        List<string> tempList = DictTools.GetDictValue<AOISceneGrid, List<string>>(AOIAccountDict, surroundAOIGridList[i]);
+                        if (tempList != null)
+                        {
+                            for (int j = 0; j < tempList.Count; j++)
+                            {
+                                ClientPeer tempPeer = GetOnlinePlayerClientPeerByAccount(tempList[j]);
+                                aoiClientPeerList.Add(tempPeer);
+                            }
+                        }
+                    }
+                }
+                return aoiClientPeerList;
             }
         }
+        #endregion
 
+        #region UpdateAOIAccount
         public void UpdateOnlineAccountAOIInfo(string account, SceneCode sceneCode, float x, float z)
         {
             lock (account)
@@ -84,6 +109,14 @@ namespace FantasyOfSango.Caches
                     AddOrUpdateAOIAccountDict(account, aoiSceneGridTemp);
                     RemoveAOIAccountDict(account, aoiSceneGridCurrent);
                 }
+            }
+        }
+
+        private void SetOnlineAccountAOISceneGrid(string account, AOISceneGrid aoiSceneGrid)
+        {
+            lock (account)
+            {
+                DictTools.GetDictValue<string, ClientPeer>(OnlineAccountDict, account).SetAOIGrid(aoiSceneGrid);
             }
         }
 
@@ -115,12 +148,13 @@ namespace FantasyOfSango.Caches
                 }
             }
         }
+        #endregion
 
-        private void SetOnlineAccountAOISceneGrid(string account, AOISceneGrid aoiSceneGrid)
+        public void AddOnlineAccount(ClientPeer clientPeer, string account)
         {
-            lock (account)
+            lock (clientPeer)
             {
-                DictTools.GetDictValue<string, ClientPeer>(OnlineAccountDict, account).SetAOIGrid(aoiSceneGrid);
+                OnlineAccountDict.Add(account, clientPeer);
             }
         }
 
@@ -129,30 +163,6 @@ namespace FantasyOfSango.Caches
             lock (account)
             {
                 return OnlineAccountDict.ContainsKey(account);
-            }
-        }
-
-        public void AddOnlineAccount(ClientPeer clientPeer, string account)
-        {
-            lock (clientPeer)
-            {                
-                OnlineAccountDict.Add(account, clientPeer);
-            }
-        }
-
-        public AvaterInfo GetOnlineAvaterInfo(string account)
-        {
-            lock (account)
-            {
-                return DictTools.GetDictValue<string, ClientPeer>(OnlineAccountDict, account).AvaterInfo;
-            }
-        }
-
-        public MissionInfo GetOnlineMissionInfo(string account)
-        {
-            lock (account)
-            {
-                return DictTools.GetDictValue<string, ClientPeer>(OnlineAccountDict, account).MissionInfo;
             }
         }
 
@@ -167,116 +177,31 @@ namespace FantasyOfSango.Caches
                 if (OnlineAccountDict.ContainsKey(clientPeer.Account))
                 {
                     OnlineAccountDict.Remove(clientPeer.Account);
-                }               
-            }
-        }
-
-        public List<string> GetOnlinePlayerAccount()
-        {
-            List<string> onlineAccountList = new List<string>();
-            foreach (var item in OnlineAccountDict.Keys)
-            {
-                lock (item)
-                {
-                    onlineAccountList.Add(item);
                 }
             }
-            return onlineAccountList;
         }
 
-        public List<string> GetOtherOnlinePlayerAccount(string localAccount)
+        public List<ClientPeer> GetAllOnlinePlayerClientPeerList(string locker = "locker")
         {
-            List<string> onlineAccountList = new List<string>();
-            foreach (var item in OnlineAccountDict.Keys)
+            lock (locker)
             {
-                lock (item)
+                List<ClientPeer> onlinePeerList = new List<ClientPeer>();
+                foreach (var item in OnlineAccountDict.Values)
                 {
-                    if (item != localAccount)
-                    {
-                        onlineAccountList.Add(item);
-                    }
-                }
-            }
-            return onlineAccountList;
-        }
-
-        public List<ClientPeer> GetOnlinePlayerPeerList()
-        {
-            List<ClientPeer> onlinePeerList = new List<ClientPeer>();
-            foreach (var item in OnlineAccountDict.Values)
-            {
-                lock (item)
-                {
-                    onlinePeerList.Add(item);
-                }
-            }
-            return onlinePeerList;
-        }
-
-        public List<ClientPeer> GetOtherOnlinePlayerPeerList(ClientPeer localPeer)
-        {
-            List<ClientPeer> onlinePeerList = new List<ClientPeer>();
-            foreach (var item in OnlineAccountDict.Values)
-            {
-                lock (item)
-                {
-                    if (item != localPeer)
+                    lock (item)
                     {
                         onlinePeerList.Add(item);
                     }
                 }
+                return onlinePeerList;
             }
-            return onlinePeerList;
         }
 
-        public ClientPeer GetOnlinePlayerPeer(string account)
+        public ClientPeer GetOnlinePlayerClientPeerByAccount(string account)
         {
             lock (account)
             {
                 return DictTools.GetDictValue<string, ClientPeer>(OnlineAccountDict, account);
-            }
-        }
-
-        public void UpdateOnlineAvaterInfo(string attackerAccount, AvaterInfo attackerAvaterInfo, string damagerAccount, AvaterInfo damagerAvaterInfo)
-        {
-            lock (attackerAccount)
-            {
-                if (OnlineAccountDict.ContainsKey(attackerAccount))
-                {
-                    OnlineAccountDict[attackerAccount].SetAvaterInfo(attackerAvaterInfo);
-                }
-                if (OnlineAccountDict.ContainsKey(damagerAccount))
-                {
-                    OnlineAccountDict[damagerAccount].SetAvaterInfo(damagerAvaterInfo);
-                }
-            }
-        }
-
-        public void SetOnlineAvaterIndex(string account, AvaterCode avater)
-        {
-            lock (account)
-            {
-                int index = 0;
-                List<AvaterAttributeInfo> tempAttributeInfoList = GetOnlineAvaterInfo(account).AttributeInfoList;
-                for (int i = 0; i < tempAttributeInfoList.Count; i++)
-                {
-                    if (tempAttributeInfoList[i].Avater == avater)
-                    {
-                        index = i; break;
-                    }
-                }
-                if (OnlineAccountDict.ContainsKey(account))
-                {
-                    OnlineAccountDict[account].SetOnlinePlayerAvaterIndex(index);
-                }
-            }
-        }
-
-        public int GetOnlineAvaterIndex(string account)
-        {
-            lock (account)
-            {
-                return DictTools.GetDictValue<string, ClientPeer>(OnlineAccountDict, account).OnlinePlayerAvaterIndex;
             }
         }
     }

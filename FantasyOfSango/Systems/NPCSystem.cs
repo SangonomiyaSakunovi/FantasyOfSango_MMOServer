@@ -61,16 +61,13 @@ namespace FantasyOfSango.Systems
         public ClientPeer FindOnlineClientPeerAsTarget(NPCCode npcCode, float patrolToChaseDis)
         {
             NPCGameObject npc = OnlineNPCCache.Instance.GetNPCGameObject(npcCode);
-            AOISceneGrid aoiSceneGrid = npc.AOISceneGrid;
-            Vector3Position npcPos = npc.Vector3Position;
-            List<string> accountString = OnlineAccountCache.Instance.GetCurrentAOIAccount(aoiSceneGrid);
+            List<ClientPeer> accountString = OnlineAccountCache.Instance.GetCurrentAOIClientPeerList(npc);
             for (int i = 0; i < accountString.Count; i++)
             {
-                ClientPeer tempPeer = OnlineAccountCache.Instance.GetOnlinePlayerPeer(accountString[i]);
-                float tempDis = Vector3Position.Distance(npcPos, tempPeer.CurrentTransformOnline.Vector3Position);
+                float tempDis = Vector3Position.Distance(npc.Vector3Position, accountString[i].CurrentTransformOnline.Vector3Position);
                 if (tempDis < patrolToChaseDis)
                 {
-                    return tempPeer;
+                    return accountString[i];
                 }
             }
             return null;

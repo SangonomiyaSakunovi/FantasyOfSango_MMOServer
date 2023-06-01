@@ -10,6 +10,7 @@ namespace FantasyOfSango.Systems
     public class PredictSystem : BaseSystem
     {
         public static PredictSystem Instance = null;
+
         public override void InitSystem()
         {
             base.InitSystem();

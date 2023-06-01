@@ -1,12 +1,12 @@
 ﻿using FantasyOfSango.Bases;
 using FantasyOfSango.Caches;
+using FantasyOfSango.Enums;
 using Photon.SocketServer;
 using PhotonHostRuntimeInterfaces;
 using SangoCommon.Classs;
 using SangoCommon.Enums;
-using SangoCommon.Tools;
 using SangoCommon.Structs;
-using System;
+using SangoCommon.Tools;
 
 //Developer : SangonomiyaSakunovi
 //Discription: ClientPeer behaviours should define here
@@ -17,19 +17,20 @@ namespace FantasyOfSango
     {
         public string Account { get; private set; }
         public AOISceneGrid AOISceneGrid { get; private set; }
-        public int OnlinePlayerAvaterIndex { get; private set; }
+        public int CurrentAvaterIndex { get; private set; }
         public AvaterInfo AvaterInfo { get; private set; }
         public MissionInfo MissionInfo { get; private set; }
+        public ItemInfo ItemInfo { get; private set; }
         
         public int TransformClock { get; private set; }
         public TransformOnline CurrentTransformOnline { get; private set; }
         public TransformOnline LastTransformOnline { get; private set; }
 
-        //Call father class to intiate
-        public ClientPeer(InitRequest initRequest) : base(initRequest)
-        {
+        public PeerEnhanceModeCode PeerEnhanceModeCode { get; private set; }
 
-        }
+        //Call father class to intiate
+        public ClientPeer(InitRequest initRequest) : base(initRequest) { }
+  
         protected override void OnDisconnect(DisconnectReason reasonCode, string reasonDetail)
         {
             SangoServer.Log.Info("The Client is DisConnect");
@@ -74,9 +75,22 @@ namespace FantasyOfSango
             MissionInfo = missionInfo;
         }
 
-        public void SetOnlinePlayerAvaterIndex(int index)
+        public void SetItemInfo(ItemInfo itemInfo)
         {
-            OnlinePlayerAvaterIndex = index;
+            ItemInfo = itemInfo;
+        }
+
+        public void SetCurrentAvaterIndexByAvaterCode(AvaterCode avater)
+        {
+            int index = 0;
+            for (int i = 0; i < AvaterInfo.AttributeInfoList.Count; i++)
+            {
+                if (AvaterInfo.AttributeInfoList[i].Avater == avater)
+                {
+                    index = i; break;
+                }
+            }
+            CurrentAvaterIndex = index;
         }
 
         public void SetTransformOnline(TransformOnline transformOnline)
@@ -88,6 +102,11 @@ namespace FantasyOfSango
         public void SetTransformClock(int clock)
         {
             TransformClock = clock;
+        }
+
+        public void SetPeerEnhanceModeCode(PeerEnhanceModeCode peerEnhanceModeCode)
+        {
+            PeerEnhanceModeCode = peerEnhanceModeCode;
         }
     }
 }

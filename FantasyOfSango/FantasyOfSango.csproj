@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\FantasyOfSango_Photon\deploy\FantasyOfSango\</OutputPath>
+    <OutputPath>..\..\FantasyOfSango_Photon\deploy\FantasyOfSango\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -183,13 +183,18 @@
     <Compile Include="Caches\OnlineAccountCache.cs" />
     <Compile Include="Caches\OnlineAttackCache.cs" />
     <Compile Include="Caches\OnlineNPCCache.cs" />
+    <Compile Include="Configs\DataConfig.cs" />
+    <Compile Include="Constants\ConfigConstant.cs" />
     <Compile Include="Constants\MongoDBConstant.cs" />
+    <Compile Include="Enums\PeerEnum.cs" />
     <Compile Include="FSMs\NPCState.cs" />
     <Compile Include="FSMs\FSMState.cs" />
     <Compile Include="FSMs\FSMSystem.cs" />
     <Compile Include="Handlers\AttackCommandHandler.cs" />
     <Compile Include="Handlers\AttackDamageHandler.cs" />
     <Compile Include="Handlers\ChooseAvaterHandler.cs" />
+    <Compile Include="Handlers\ItemEnhanceHandler.cs" />
+    <Compile Include="Handlers\MissionUpdateHandler.cs" />
     <Compile Include="Handlers\SyncPlayerAccountHandler.cs" />
     <Compile Include="Handlers\SyncPlayerDataHandler.cs" />
     <Compile Include="ClientPeer.cs" />
@@ -200,11 +205,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SangoServer.cs" />
     <Compile Include="Services\MongoDBService.cs" />
+    <Compile Include="Services\ResourceService.cs" />
     <Compile Include="Systems\AOISystem.cs" />
     <Compile Include="Systems\ElementSystem.cs" />
+    <Compile Include="Systems\ItemEnhanceSystem.cs" />
+    <Compile Include="Systems\MissionUpdateSystem.cs" />
     <Compile Include="Systems\NPCSystem.cs" />
     <Compile Include="Systems\OnlineAttackSystem.cs" />
     <Compile Include="Systems\PredictSystem.cs" />
+    <Compile Include="Systems\RegisterSystem.cs" />
     <Compile Include="Threads\SyncEnemyLogicThreads.cs" />
     <Compile Include="Threads\SyncPlayerTransformThreads.cs" />
   </ItemGroup>

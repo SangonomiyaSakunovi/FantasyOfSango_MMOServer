@@ -19,13 +19,18 @@ namespace FantasyOfSango.Handlers
 
         public override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters, ClientPeer peer)
         {
-            AvaterInfo avaterInfo = OnlineAccountCache.Instance.GetOnlineAvaterInfo(peer.Account);
+            AvaterInfo avaterInfo = peer.AvaterInfo;
             string avaterInfoJson = SetJsonString(avaterInfo);
-            MissionInfo missionInfo = OnlineAccountCache.Instance.GetOnlineMissionInfo(peer.Account);
+            MissionInfo missionInfo = peer.MissionInfo;
             string missionInfoJson = SetJsonString(missionInfo);
+            ItemInfo itemInfo = peer.ItemInfo;
+            string itemInfoJson = SetJsonString(itemInfo);
+
             Dictionary<byte, object> dict = new Dictionary<byte, object>();
             dict.Add((byte)ParameterCode.AvaterInfo, avaterInfoJson);
             dict.Add((byte)ParameterCode.MissionInfo, missionInfoJson);
+            dict.Add((byte)ParameterCode.ItemInfo, itemInfoJson);
+
             OperationResponse response = new OperationResponse(operationRequest.OperationCode);
             response.SetParameters(dict);
             peer.SendOperationResponse(response, sendParameters);

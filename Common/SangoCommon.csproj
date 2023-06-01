@@ -93,8 +93,10 @@
   <ItemGroup>
     <Compile Include="Classs\AStarClass.cs" />
     <Compile Include="Classs\AttackClass.cs" />
-    <Compile Include="Classs\AttributeClass.cs" />
+    <Compile Include="Classs\AvaterClass.cs" />
     <Compile Include="Classs\ElementClass.cs" />
+    <Compile Include="Classs\ItemEnhanceClass.cs" />
+    <Compile Include="Classs\MissionClass.cs" />
     <Compile Include="Classs\NPCClass.cs" />
     <Compile Include="Classs\PlayerClass.cs" />
     <Compile Include="Classs\TransformClass.cs" />
@@ -106,6 +108,8 @@
     <Compile Include="Enums\CombatEnum.cs" />
     <Compile Include="Enums\ElementEnum.cs" />
     <Compile Include="Enums\FSMEnum.cs" />
+    <Compile Include="Enums\ItemEnum.cs" />
+    <Compile Include="Enums\MissionEnum.cs" />
     <Compile Include="Enums\SceneEnum.cs" />
     <Compile Include="Enums\ServerEnum.cs" />
     <Compile Include="Structs\GridStruct.cs" />

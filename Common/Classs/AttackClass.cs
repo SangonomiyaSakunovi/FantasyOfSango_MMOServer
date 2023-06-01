@@ -7,6 +7,7 @@ using System;
 
 namespace SangoCommon.Classs
 {
+    [Serializable]
     public class AttackCommand
     {
         public string Account { get; set; }
@@ -15,6 +16,7 @@ namespace SangoCommon.Classs
         public QuaternionRotation QuaternionRotation { get; set; }
     }
 
+    [Serializable]
     public class AttackDamage
     {
         public FightTypeCode FightTypeCode { get; set; }
@@ -27,6 +29,7 @@ namespace SangoCommon.Classs
         public DateTime DateTime { get; set; }
     }
 
+    [Serializable]
     public class AttackResult
     {
         public string AttackerAccount { get; set; }

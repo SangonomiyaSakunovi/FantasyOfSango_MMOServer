@@ -46,7 +46,7 @@ namespace FantasyOfSango.Threads
         private void CheckIfTheClientMoved()
         {
             AOIMovedAccountDict.Clear();
-            List<ClientPeer> onlinePeerList = OnlineAccountCache.Instance.GetOnlinePlayerPeerList();
+            List<ClientPeer> onlinePeerList = OnlineAccountCache.Instance.GetAllOnlinePlayerClientPeerList();
             for (int i = 0; i < onlinePeerList.Count; i++)
             {
                 ClientPeer peer = onlinePeerList[i];
@@ -82,7 +82,7 @@ namespace FantasyOfSango.Threads
 
         private void SendAOITransform()
         {
-            List<ClientPeer> onlinePeerList = OnlineAccountCache.Instance.GetOnlinePlayerPeerList();
+            List<ClientPeer> onlinePeerList = OnlineAccountCache.Instance.GetAllOnlinePlayerClientPeerList();
             for (int i = 0; i < onlinePeerList.Count; i++)
             {
                 ClientPeer peer = onlinePeerList[i];
@@ -93,7 +93,7 @@ namespace FantasyOfSango.Threads
                     List<string> surroundAOIMovedAccountList = GetSurroundAOIMovedAccount(aoiSceneGrid);
                     for (int j = 0; j < surroundAOIMovedAccountList.Count; j++)
                     {
-                        TransformOnline aoiTransform = OnlineAccountCache.Instance.GetAccountTransfrom(surroundAOIMovedAccountList[j]);
+                        TransformOnline aoiTransform = OnlineAccountCache.Instance.GetOnlinePlayerClientPeerByAccount(surroundAOIMovedAccountList[j]).CurrentTransformOnline;
                         surroundAOIMovedTransformList.Add(aoiTransform);
                     }
                 }

@@ -30,7 +30,8 @@ namespace FantasyOfSango
 
         public Dictionary<OperationCode, BaseHandler> HandlerDict = new Dictionary<OperationCode, BaseHandler>();
 
-
+        SyncPlayerTransformThreads syncPlayerTransformThreads = new SyncPlayerTransformThreads();
+        SyncEnemyLogicThreads syncEnemyLogicThreads = new SyncEnemyLogicThreads();
 
         //Build connectioner peer
         protected override PeerBase CreatePeer(InitRequest initRequest)
@@ -100,6 +101,10 @@ namespace FantasyOfSango
             HandlerDict.Add(attackDamageHandler.OpCode, attackDamageHandler);
             ChooseAvaterHandler chooseAvaterHandler = new ChooseAvaterHandler();
             HandlerDict.Add(chooseAvaterHandler.OpCode, chooseAvaterHandler);
+            ItemEnhanceHandler itemEnhanceHandler = new ItemEnhanceHandler();
+            HandlerDict.Add(itemEnhanceHandler.OpCode, itemEnhanceHandler);
+            MissionUpdateHandler missionUpdateHandler = new MissionUpdateHandler();
+            HandlerDict.Add(missionUpdateHandler.OpCode, missionUpdateHandler);
         }
 
         private void InitCache()
@@ -114,6 +119,8 @@ namespace FantasyOfSango
 
         private void InitSystem()
         {
+            RegisterSystem registerSystem = new RegisterSystem();
+            registerSystem.InitSystem();
             OnlineAttackSystem onlineAttackSystem = new OnlineAttackSystem();
             onlineAttackSystem.InitSystem();
             AOISystem aoiSystem = new AOISystem();
@@ -122,18 +129,19 @@ namespace FantasyOfSango
             npcSystem.InitSystem();
             PredictSystem predictSystem = new PredictSystem();
             predictSystem.InitSystem();
+            ItemEnhanceSystem itemEnhanceSystem = new ItemEnhanceSystem();
+            itemEnhanceSystem.InitSystem();
+            MissionUpdateSystem missionUpdateSystem = new MissionUpdateSystem();
+            missionUpdateSystem.InitSystem();
         }
 
         public void InitService()
         {
             MongoDBService mongoDBService = new MongoDBService();
             mongoDBService.InitService();
+            ResourceService resourceService = new ResourceService();
+            resourceService.InitService();
         }
-
-        #region Threads
-        SyncPlayerTransformThreads syncPlayerTransformThreads = new SyncPlayerTransformThreads();
-        SyncEnemyLogicThreads syncEnemyLogicThreads = new SyncEnemyLogicThreads();
-        #endregion
 
         private void InitThreads()
         {

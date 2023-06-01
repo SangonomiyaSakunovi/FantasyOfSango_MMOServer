@@ -29,8 +29,17 @@ namespace SangoCommon.Classs
     {
         public string _id { get; set;}
         public string Account { get; set; }
-        public List<string> MainMissionInfoList { get; set; }
-        public List<string> DailyMissionInfoList { get; set; }
-        public List<string> OptionalMissionInfoList { get; set; }
+        public List<string> MainMissionIdList { get; set; }
+        public List<string> DailyMissionIdList { get; set; }
+        public List<string> OptionalMissionIdList { get; set; }
+    }
+
+    [Serializable]
+    public class ItemInfo
+    {
+        public string _id { get; set; }
+        public string Account { get; set; }
+        public int Coin { get; set; }
+        public List<string> WeaponEnhanceMaterialList { get; set; }
     }
 }
