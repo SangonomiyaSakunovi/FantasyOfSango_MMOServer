@@ -192,6 +192,7 @@
     <Compile Include="FSMs\FSMSystem.cs" />
     <Compile Include="Handlers\AttackCommandHandler.cs" />
     <Compile Include="Handlers\AttackDamageHandler.cs" />
+    <Compile Include="Handlers\ChatHandler.cs" />
     <Compile Include="Handlers\ChooseAvaterHandler.cs" />
     <Compile Include="Handlers\ItemEnhanceHandler.cs" />
     <Compile Include="Handlers\MissionUpdateHandler.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="Systems\AOISystem.cs" />
     <Compile Include="Systems\ElementSystem.cs" />
     <Compile Include="Systems\ItemEnhanceSystem.cs" />
+    <Compile Include="Systems\LoginSystem.cs" />
     <Compile Include="Systems\MissionUpdateSystem.cs" />
     <Compile Include="Systems\NPCSystem.cs" />
     <Compile Include="Systems\OnlineAttackSystem.cs" />

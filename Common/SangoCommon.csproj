@@ -94,14 +94,17 @@
     <Compile Include="Classs\AStarClass.cs" />
     <Compile Include="Classs\AttackClass.cs" />
     <Compile Include="Classs\AvaterClass.cs" />
+    <Compile Include="Classs\ChatClass.cs" />
     <Compile Include="Classs\ElementClass.cs" />
     <Compile Include="Classs\ItemEnhanceClass.cs" />
     <Compile Include="Classs\MissionClass.cs" />
     <Compile Include="Classs\NPCClass.cs" />
     <Compile Include="Classs\PlayerClass.cs" />
+    <Compile Include="Classs\ShopClass.cs" />
     <Compile Include="Classs\TransformClass.cs" />
     <Compile Include="Constants\ElementConstant.cs" />
     <Compile Include="Constants\EnemyConstant.cs" />
+    <Compile Include="Constants\ItemConstant.cs" />
     <Compile Include="Constants\ThreadsConstant.cs" />
     <Compile Include="Constants\TimeConstant.cs" />
     <Compile Include="Enums\AvaterEnum.cs" />
@@ -112,6 +115,7 @@
     <Compile Include="Enums\MissionEnum.cs" />
     <Compile Include="Enums\SceneEnum.cs" />
     <Compile Include="Enums\ServerEnum.cs" />
+    <Compile Include="Enums\TradeEnum.cs" />
     <Compile Include="Structs\GridStruct.cs" />
     <Compile Include="Structs\TransformStruct.cs" />
     <Compile Include="Tools\GetEnum.cs" />

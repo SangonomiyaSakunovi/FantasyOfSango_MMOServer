@@ -24,7 +24,7 @@ namespace FantasyOfSango.Systems
             UpdateOnlineAccountMissionCompleteRewards(missionCompleteReq, clientPeer);
             MissionUpdateRsp missionUpdateRsp = new MissionUpdateRsp();
             missionUpdateRsp.MissionId = missionCompleteReq.MissionId;
-            missionUpdateRsp.missionUpdateTypeCode = MissionUpdateTypeCode.Complete;
+            missionUpdateRsp.MissionUpdateTypeCode = MissionUpdateTypeCode.Complete;
             missionUpdateRsp.MissionTypeCode = MissionTypeCode.Main;
             missionUpdateRsp.IsCompleteSuccess = true;
             return missionUpdateRsp;

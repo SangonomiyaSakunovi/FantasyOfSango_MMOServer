@@ -9,7 +9,8 @@ namespace SangoCommon.Enums
         SyncPlayerTransform,
         AttackCommand,
         AttackResult,
-        ChooseAvater
+        ChooseAvater,
+        Chat
     }
 
     public enum OperationCode : byte
@@ -24,7 +25,9 @@ namespace SangoCommon.Enums
         AttackDamage,
         ChooseAvater,
         ItemEnhance,
-        MissionUpdate
+        MissionUpdate,
+        Chat,
+        Shop,
     }
 
     public enum ParameterCode : byte
@@ -47,7 +50,10 @@ namespace SangoCommon.Enums
         ItemEnhanceReq,
         ItemEnhanceRsp,
         MissionUpdateReq,
-        MissionUpdateRsp
+        MissionUpdateRsp,
+        OnlineAccountChatMessage,
+        ShopInfoReq,
+        ShopInfoRsp,
     }
 
     public enum ReturnCode : short

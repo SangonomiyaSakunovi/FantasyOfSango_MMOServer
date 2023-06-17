@@ -11,7 +11,7 @@ namespace SangoCommon.Classs
     {
         public string MissionId { get; set; }
         public MissionTypeCode MissionTypeCode { get; set; }
-        public MissionUpdateTypeCode missionUpdateTypeCode { get; set; }
+        public MissionUpdateTypeCode MissionUpdateTypeCode { get; set; }
     }
 
     [Serializable]
@@ -20,6 +20,6 @@ namespace SangoCommon.Classs
         public string MissionId { get; set; }
         public bool IsCompleteSuccess { get; set; }
         public MissionTypeCode MissionTypeCode { get; set; }
-        public MissionUpdateTypeCode missionUpdateTypeCode { get; set; }
+        public MissionUpdateTypeCode MissionUpdateTypeCode { get; set; }
     }
 }

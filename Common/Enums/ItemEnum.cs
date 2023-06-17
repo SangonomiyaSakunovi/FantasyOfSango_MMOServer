@@ -11,6 +11,6 @@ namespace SangoCommon.Enums
 
     public enum ItemTypeCode
     {
-        Weapon
+        Weapon,
     }
 }

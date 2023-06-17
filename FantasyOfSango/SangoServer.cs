@@ -105,6 +105,8 @@ namespace FantasyOfSango
             HandlerDict.Add(itemEnhanceHandler.OpCode, itemEnhanceHandler);
             MissionUpdateHandler missionUpdateHandler = new MissionUpdateHandler();
             HandlerDict.Add(missionUpdateHandler.OpCode, missionUpdateHandler);
+            ChatHandler chatHandler = new ChatHandler();
+            HandlerDict.Add(chatHandler.OpCode, chatHandler);
         }
 
         private void InitCache()
@@ -119,6 +121,8 @@ namespace FantasyOfSango
 
         private void InitSystem()
         {
+            LoginSystem loginSystem = new LoginSystem();
+            loginSystem.InitSystem();
             RegisterSystem registerSystem = new RegisterSystem();
             registerSystem.InitSystem();
             OnlineAttackSystem onlineAttackSystem = new OnlineAttackSystem();

@@ -19,14 +19,14 @@ namespace FantasyOfSango.Handlers
         public override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters, ClientPeer peer)
         {
             string attackCommandJson = DictTools.GetStringValue(operationRequest.Parameters, (byte)ParameterCode.AttackCommand);
-            List<ClientPeer> onlinePeerList = OnlineAccountCache.Instance.GetSurroundAOIClientPeerList(peer);
-            foreach (ClientPeer onlinePeer in onlinePeerList)
+            List<ClientPeer> aoiOnlinePeerList = OnlineAccountCache.Instance.GetSurroundAOIClientPeerList(peer);
+            foreach (ClientPeer aoiOnlinePeer in aoiOnlinePeerList)
             {
                 EventData eventData = new EventData((byte)EventCode.AttackCommand);
                 Dictionary<byte, object> dict = new Dictionary<byte, object>();
                 dict.Add((byte)ParameterCode.AttackCommand, attackCommandJson);
                 eventData.SetParameters(dict);
-                onlinePeer.SendEvent(eventData, sendParameters);
+                aoiOnlinePeer.SendEvent(eventData, sendParameters);
             }
         }
     }

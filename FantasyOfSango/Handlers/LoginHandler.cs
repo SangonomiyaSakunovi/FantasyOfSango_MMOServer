@@ -1,8 +1,6 @@
 ﻿using FantasyOfSango.Bases;
 using FantasyOfSango.Caches;
-using FantasyOfSango.Constants;
-using FantasyOfSango.Enums;
-using FantasyOfSango.Services;
+using FantasyOfSango.Systems;
 using Photon.SocketServer;
 using SangoCommon.Classs;
 using SangoCommon.Enums;
@@ -23,11 +21,9 @@ namespace FantasyOfSango.Handlers
         {
             string account = DictTools.GetStringValue(operationRequest.Parameters, (byte)ParameterCode.Account);
             string password = DictTools.GetStringValue(operationRequest.Parameters, (byte)ParameterCode.Password);
-            string collectionName = MongoDBCollectionConstant.UserInfos;
-            string objectId = MongoDBIdConstant.UserInfo_ + account;
+            UserInfo lookUpUserInfo = LoginSystem.Instance.LookUpUserInfo(account);
             bool isAccountPasswordMatch = false;
             bool isAccountOnline = false;
-            UserInfo lookUpUserInfo = MongoDBService.Instance.LookUpOneData<UserInfo>(collectionName,objectId);
             if (lookUpUserInfo != null)
             {
                 if (lookUpUserInfo.Password == password)
@@ -40,28 +36,10 @@ namespace FantasyOfSango.Handlers
             if (isAccountPasswordMatch)
             {
                 if (!isAccountOnline)
-                {                   
+                {
                     lock (this)
                     {
-                        string avaterCollectionName = MongoDBCollectionConstant.AvaterInfos;
-                        string avaterObjectId = MongoDBIdConstant.AvaterInfo_ + account;
-                        string missionCollectionName = MongoDBCollectionConstant.MissionInfos;
-                        string missionObjectId = MongoDBIdConstant.MissionInfo_ + account;
-                        string itemCollectionName = MongoDBCollectionConstant.ItemInfos;
-                        string itemObjectId = MongoDBIdConstant.ItemInfo_ + account;
-
-                        AvaterInfo avaterInfo = MongoDBService.Instance.LookUpOneData<AvaterInfo>(avaterCollectionName, avaterObjectId);
-                        MissionInfo missionInfo = MongoDBService.Instance.LookUpOneData<MissionInfo>(missionCollectionName, missionObjectId);
-                        ItemInfo itemInfo = MongoDBService.Instance.LookUpOneData<ItemInfo>(itemCollectionName, itemObjectId);
-
-                        SangoServer.Instance.clientPeer.SetAccount(account);
-                        SangoServer.Instance.clientPeer.SetAvaterInfo(avaterInfo);
-                        SangoServer.Instance.clientPeer.SetMissionInfo(missionInfo);
-                        SangoServer.Instance.clientPeer.SetItemInfo(itemInfo);
-                        SangoServer.Instance.clientPeer.SetCurrentAvaterIndexByAvaterCode(AvaterCode.SangonomiyaKokomi);
-                        SangoServer.Instance.clientPeer.SetPeerEnhanceModeCode(PeerEnhanceModeCode.Done);
-
-                        OnlineAccountCache.Instance.AddOnlineAccount(SangoServer.Instance.clientPeer, account);
+                        LoginSystem.Instance.InitOnlineAccountCache(account);
                     }
                     response.ReturnCode = (short)ReturnCode.Success;
                 }
@@ -76,6 +54,5 @@ namespace FantasyOfSango.Handlers
             }
             peer.SendOperationResponse(response, sendParameters);
         }
-
     }
 }

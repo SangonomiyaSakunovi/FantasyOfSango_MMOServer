@@ -23,7 +23,7 @@ namespace FantasyOfSango.Handlers
             MissionUpdateRsp missionUpdateRsp = null;
             string missionUpdateRequestJson = DictTools.GetStringValue(operationRequest.Parameters, (byte)ParameterCode.MissionUpdateReq);
             MissionUpdateReq missionUpdateReq = DeJsonString<MissionUpdateReq>(missionUpdateRequestJson);
-            switch (missionUpdateReq.missionUpdateTypeCode)
+            switch (missionUpdateReq.MissionUpdateTypeCode)
             {
                 case MissionUpdateTypeCode.Complete:
                     missionUpdateRsp = MissionUpdateSystem.Instance.GetMissionCompleteResult(missionUpdateReq, peer);
